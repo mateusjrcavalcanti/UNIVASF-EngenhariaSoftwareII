@@ -4,15 +4,11 @@
  */
 package Views;
 
-/**
- *
- * @author tapet
- */
+import javax.swing.JOptionPane;
+
+
 public class LoginPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginPage
-     */
     public LoginPage() {
         initComponents();
     }
@@ -44,6 +40,7 @@ public class LoginPage extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(88, 88, 86));
@@ -52,18 +49,19 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGap(0, 1040, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 20));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 20));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        login_User.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_User.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_UserActionPerformed(evt);
@@ -76,11 +74,12 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 70, 30));
 
         jLabel2.setText("Usuário");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 70, -1));
 
         jLabel4.setText("Senha");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 70, -1));
 
+        password_user.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         password_user.setToolTipText("");
         jPanel2.add(password_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 350, 40));
 
@@ -90,7 +89,7 @@ public class LoginPage extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
+        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 170, -1));
 
         jLabel5.setForeground(new java.awt.Color(51, 0, 255));
         jLabel5.setText("Esqueceu a senha?");
@@ -105,6 +104,11 @@ public class LoginPage extends javax.swing.JFrame {
         jButton_Logar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton_Logar.setForeground(new java.awt.Color(255, 255, 255));
         jButton_Logar.setText("Entrar");
+        jButton_Logar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LogarActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton_Logar, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 400, 350, 40));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/painelTransparente.png"))); // NOI18N
@@ -127,7 +131,7 @@ public class LoginPage extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
@@ -143,14 +147,14 @@ public class LoginPage extends javax.swing.JFrame {
                 .addContainerGap(249, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 500, 590));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 510, 590));
 
         jMenu2.setText("      ");
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(1048, 639));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -165,6 +169,31 @@ public class LoginPage extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jButton_LogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogarActionPerformed
+        // TBotão ao clicar faz a verificação e entra no sistema
+        if(login_User.getText().equals("dono") && password_user.getText().equals("1"))
+        {
+            TelaLoading tela = new TelaLoading();
+            tela.setVisible(true);
+            dispose();
+        } else if(login_User.getText().equals("admin") && password_user.getText().equals("1")){
+        
+            TelaAdmin tela = new TelaAdmin();
+            tela.setVisible(true);
+            dispose();
+        }
+            else if(login_User.getText().equals("morador") && password_user.getText().equals("1")){
+            TelaAdmin tela = new TelaAdmin();
+            tela.setVisible(true);
+            dispose();    
+        
+        }else{
+     
+            
+            JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
+        }
+    }//GEN-LAST:event_jButton_LogarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +220,7 @@ public class LoginPage extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
