@@ -1,3 +1,7 @@
+---
+"": ""
+---
+
 # Engenharia Software II - Sistema de Gestão de Condomínio
 
 ## Objetivo:
@@ -26,5 +30,17 @@ curso de Engenharia de Software.
 
 ## Tecnologias:
 
-- O sistema será implementado em Java como linguagem de programação.
-- Para o banco de dados, será utilizado um sistema de gerenciamento de banco de dados relacional (por exemplo, MySQL ou PostgreSQL).
+* O sistema será implementado em Java como linguagem de programação.
+* Para o banco de dados, será utilizado o PostgreSQL (um sistema de gerenciamento de banco de dados relacional).
+
+## Instruções
+
+### PostgreSQL
+
+| Servidor  | Porta | Banco de Dados | Usuário | Senha    |
+| :-------- | ----- | -------------- | ------- | -------- |
+| localhost | 5432  | condominio     | user    | password |
+
+Usando o Docker para criar um Servidor PostgreSQL em container:
+
+`docker run -d --name postgres_condominio -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=condominio -p 5432:5432 postgres`

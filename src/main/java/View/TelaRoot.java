@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Views;
+package View;
 
 /**
  *
  * @author toim6
  */
-public class TelaAdmin extends javax.swing.JFrame {
+public class TelaRoot extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaInicio
      */
-    public TelaAdmin() {
+    public TelaRoot() {
         initComponents();
     }
 
@@ -39,6 +39,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         jButton_Controle_Acesso = new javax.swing.JButton();
         jButton_Cadastro_Veiculo = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -70,7 +71,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel3.add(jButton_Taxa_Infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 192, -1));
 
         jButton_Cadastro_Morador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userpropietario.png"))); // NOI18N
-        jButton_Cadastro_Morador.setText("Cadastro Morador");
+        jButton_Cadastro_Morador.setText("Cadastro Usuário");
         jButton_Cadastro_Morador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Cadastro_MoradorActionPerformed(evt);
@@ -133,18 +134,26 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
+        jLabel6.setText("Necessário?");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(262, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(123, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(91, 91, 91))
         );
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 390, 260));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 390, 230));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LogosCondomínioMenor.png"))); // NOI18N
 
@@ -273,7 +282,7 @@ public class TelaAdmin extends javax.swing.JFrame {
 
     private void jButton_Cadastro_MoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_MoradorActionPerformed
         //  TelaLoading tela = new TelaLoading();
-            TelaCadastroMorador tela = new TelaCadastroMorador();
+            TelaCadastroUsuario tela = new TelaCadastroUsuario();
             tela.setVisible(true);
             tela.setLocationRelativeTo(null); 
     }//GEN-LAST:event_jButton_Cadastro_MoradorActionPerformed
@@ -312,6 +321,12 @@ public class TelaAdmin extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -335,6 +350,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
