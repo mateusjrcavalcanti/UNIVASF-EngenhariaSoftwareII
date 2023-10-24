@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
+import Controller.AuthController;
+import Model.User;
 import javax.swing.JOptionPane;
 
 
@@ -172,25 +170,31 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton_LogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogarActionPerformed
         // TBotão ao clicar faz a verificação e entra no sistema
-        if(login_User.getText().equals("dono") && password_user.getText().equals("1"))
+        AuthController controller = new AuthController();
+        User user = controller.auth(login_User.getText(), password_user.getText());
+        
+        if(user == null){
+            JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
+        }else{
+        
+        }
+        
+        if(login_User.getText().equals("dono"))
         {
             TelaLoading tela = new TelaLoading();
             tela.setVisible(true);
             dispose();
-        } else if(login_User.getText().equals("admin") && password_user.getText().equals("1")){
-        
+        } else if(user.getIs_admin()){        
             TelaAdmin tela = new TelaAdmin();
             tela.setVisible(true);
             dispose();
         }
-            else if(login_User.getText().equals("morador") && password_user.getText().equals("1")){
-            TelaAdmin tela = new TelaAdmin();
+            else if(user.getIs_resident()){
+            TelaMorador tela = new TelaMorador();
             tela.setVisible(true);
             dispose();    
         
-        }else{
-     
-            
+        }else{           
             JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
         }
     }//GEN-LAST:event_jButton_LogarActionPerformed

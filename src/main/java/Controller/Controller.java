@@ -10,7 +10,7 @@ public class Controller {
     protected EntityManagerFactory entityManagerFactory ;
     protected EntityManager entityManager;
         
-    public Controller() {
+    public void conn() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("maindatabase");
         this.entityManager =  entityManagerFactory.createEntityManager();
     }

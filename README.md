@@ -1,7 +1,3 @@
----
-"": ""
----
-
 # Engenharia Software II - Sistema de Gestão de Condomínio
 
 ## Objetivo:
@@ -42,5 +38,9 @@ curso de Engenharia de Software.
 | localhost | 5432  | condominio     | user    | password |
 
 Usando o Docker para criar um Servidor PostgreSQL em container:
-
 `docker run -d --name postgres_condominio -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=condominio -p 5432:5432 postgres`
+
+### Auth
+
+Usuário: admin
+Senha: admin

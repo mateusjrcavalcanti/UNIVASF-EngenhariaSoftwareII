@@ -6,9 +6,19 @@ import javax.persistence.TypedQuery;
 
 
 public class UserController extends Controller {
-    
+
+    public UserController() {
+        if(this.all().isEmpty()){
+            User admin = this.insert("admin", "admin", "admin", true);
+            System.out.println("ID: " + admin.getId());
+            System.out.println("Nome: " + admin.getName());
+            System.out.println("Usuário: " + admin.getUsername());
+        }
+    }
+        
     public User find(int id) {
         try {
+            this.conn();
             User result = this.entityManager.find(User.class, id);
             return result;
         } finally {            
@@ -18,6 +28,7 @@ public class UserController extends Controller {
     
     public List<User> all() {        
         try {
+            this.conn();
             String jpql = "SELECT c FROM User c";
             TypedQuery<User> query = this.entityManager.createQuery(jpql, User.class);
 
@@ -29,10 +40,10 @@ public class UserController extends Controller {
         }
     }
     
-    public User insert(String name) {        
+    public User insert(String name, String username, String password, Boolean is_admin) {        
         try {
-            User result = new User();
-            result.setNome(name);
+            this.conn();
+            User result = new User(name, username, password, is_admin);
 
             this.entityManager.getTransaction().begin();
             this.entityManager.persist(result);
@@ -48,12 +59,17 @@ public class UserController extends Controller {
         }
     }
     
+    public User insert(String name, String username, String password) {        
+        return insert(name, username, password,  false);
+    }
+    
     public User update(int id, String novoNome) {        
         try {
+            this.conn();
             User result = this.entityManager.find(User.class, id);
 
         if (result != null) {
-            result.setNome(novoNome);
+            result.setName(novoNome);
 
             
             this.entityManager.getTransaction().begin();
@@ -71,6 +87,7 @@ public class UserController extends Controller {
     
     public boolean delete(int id) {      
         try {
+            this.conn();
             User result = this.entityManager.find(User.class, id);
 
             if (result != null) {
@@ -84,5 +101,5 @@ public class UserController extends Controller {
         } finally {            
             this.close();
         }
-    }
+    }    
 }
