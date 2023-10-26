@@ -1,39 +1,32 @@
 package Controller;
 
-import Model.User;
+import Model.House;
 import java.util.List;
 import javax.persistence.TypedQuery;
-import javax.swing.ComboBoxModel;
 
 
-public class UserController extends Controller {
+public class HouseController extends Controller {
 
-    public UserController() {
-        if(this.all().isEmpty()){
-            User admin = this.insert("admin", "(87) 98877-6655", "111.222.444-55", "admin", "admin", true);
-            System.out.println("ID: " + admin.getId());
-            System.out.println("Nome: " + admin.getName());
-            System.out.println("Usuário: " + admin.getUsername());
-        }
+    public HouseController() {
     }
-        
-    public User find(int id) {
+    
+    public House find(int id) {
         try {
             this.conn();
-            User result = this.entityManager.find(User.class, id);
+            House result = this.entityManager.find(House.class, id);
             return result;
         } finally {            
             this.close();
         }
     }
     
-    public List<User> all() {        
+    public List<House> all() {        
         try {
             this.conn();
-            String jpql = "SELECT c FROM User c";
-            TypedQuery<User> query = this.entityManager.createQuery(jpql, User.class);
+            String jpql = "SELECT c FROM House c";
+            TypedQuery<House> query = this.entityManager.createQuery(jpql, House.class);
 
-            List<User> result = query.getResultList();
+            List<House> result = query.getResultList();
 
             return result;
         } finally {            
@@ -41,10 +34,10 @@ public class UserController extends Controller {
         }
     }
     
-    public User insert(String name, String phone, String cpf, String username, String password, Boolean is_admin) {        
+    public House insert(String adress, int size, int number) {        
         try {
             this.conn();
-            User result = new User(name, phone, cpf, username, password, is_admin);
+            House result = new House(adress, size, number);
 
             this.entityManager.getTransaction().begin();
             this.entityManager.persist(result);
@@ -60,22 +53,15 @@ public class UserController extends Controller {
         }
     }
     
-    public User insert(String name, String phone, String cpf, String username, String password) {        
-        return insert(name, phone, cpf, username, password,  false);
-    }
-    
-    public User update(int id, String name, String phone, String cpf, String username, String password, Boolean is_admin) {        
+    public House update(int id, String adress, int size, int number) {        
         try {
             this.conn();
-            User result = this.entityManager.find(User.class, id);
+            House result = this.entityManager.find(House.class, id);
 
         if (result != null) {
-            result.setName(name);
-            result.setCpf(cpf);
-            result.setPassword(password);
-            result.setPhone(phone);
-            result.setUsername(username);
-            result.setIs_admin(is_admin);
+            result.setAdress(adress);
+            result.setSize(size);
+            result.setNumber(number);
             
             this.entityManager.getTransaction().begin();
             result = this.entityManager.merge(result);
@@ -93,7 +79,7 @@ public class UserController extends Controller {
     public boolean delete(int id) {      
         try {
             this.conn();
-            User result = this.entityManager.find(User.class, id);
+            House result = this.entityManager.find(House.class, id);
 
             if (result != null) {
                 this.entityManager.getTransaction().begin();
@@ -106,5 +92,7 @@ public class UserController extends Controller {
         } finally {            
             this.close();
         }
-    }      
+    } 
+    
+
 }

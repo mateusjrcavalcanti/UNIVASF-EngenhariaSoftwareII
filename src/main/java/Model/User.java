@@ -20,6 +20,10 @@ public class User implements Serializable {
     private int id;
 
     private String name;
+    
+    private String phone;
+    
+    private String cpf;
 
     private String username;
 
@@ -31,25 +35,30 @@ public class User implements Serializable {
     @JoinTable(
       name = "users_houses",
       joinColumns = {@JoinColumn(name = "user_id")},
-      inverseJoinColumns = {@JoinColumn(name = "home_id")}
+      inverseJoinColumns = {@JoinColumn(name = "house_id")}
     )
     
-    private List<Home> houses;
+    private List<House> houses;
 
     public User() {
     }
 
-    public User(String name, String username, String password) {
+    public User(String name, String phone, String cpf, String username, String password, Boolean is_admin) {
         this.name = name;
-        this.username = username;
-        this.password = password;
-    }
-    
-    public User(String name, String username, String password, Boolean is_admin) {
-        this.name = name;
+        this.phone = phone;
+        this.cpf = cpf;
         this.username = username;
         this.password = password;
         this.is_admin = is_admin;
+    } 
+
+   public User(String name, String phone, String cpf, String username, String password) {
+        this.name = name;
+        this.phone = phone;
+        this.cpf = cpf;
+        this.username = username;
+        this.password = password;
+        this.is_admin = false;
     }
     
     public String getName() {
@@ -62,10 +71,6 @@ public class User implements Serializable {
 
     public int getId() {
             return id;
-    }
-
-    public void setId(int id) {
-            this.id = id;
     }
 
     public String getUsername() {
@@ -92,16 +97,29 @@ public class User implements Serializable {
         this.is_admin = is_admin;
     }
 
-    public List<Home> getHouses() {
+    public List<House> getHouses() {
         return houses;
     }   
     
     public Boolean getIs_resident(){
-        if(this.houses.isEmpty()){ 
-            return false;
-        } else {
-            return true;
-        }
+        return !this.houses.isEmpty();
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 	
+    
 }

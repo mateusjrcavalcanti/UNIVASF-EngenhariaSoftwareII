@@ -40,6 +40,9 @@ curso de Engenharia de Software.
 Usando o Docker para criar um Servidor PostgreSQL em container:
 `docker run -d --name postgres_condominio -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=condominio -p 5432:5432 postgres`
 
+Usando o Docker para criar um PgAdmin em container (ip da máquina host: 172.17.0.1)
+`docker run -p 8080:80 -e 'PGADMIN_DEFAULT_EMAIL=user@email.com' -e 'PGADMIN_DEFAULT_PASSWORD=password' -d dpage/pgadmin4`
+
 ### Auth
 
 Usuário: admin

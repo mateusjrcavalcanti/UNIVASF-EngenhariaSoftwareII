@@ -4,17 +4,39 @@
  */
 package View;
 
+import Controller.HouseController;
+import Controller.UserController;
+import Model.House;
+import Model.User;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tapet
  */
 public class TelaCadastroResidencia extends javax.swing.JFrame {
+    
+    DefaultTableModel tblModel;
 
     /**
      * Creates new form TelaUsuário
      */
     public TelaCadastroResidencia() {
+        UserController userController = new UserController();        
+        HouseController houseController = new HouseController();        
+        
         initComponents();
+        
+        for (User user : userController.all()) {           
+            jComboBox_proprietario.addItem(user.getName() + " | " + user.getId());
+        }
+        
+        tblModel = (DefaultTableModel)jTable1.getModel();
+        for (House house : houseController.all()) {  
+            String[] rowData = {String.valueOf(house.getId()), "dono", house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
+            tblModel.addRow(rowData);
+        }
+        
     }
 
     /**
@@ -33,10 +55,10 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TextField_name_user = new javax.swing.JTextField();
+        TextField_numero = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        TextField_loggin_user = new javax.swing.JTextField();
-        jComboBox_type_user = new javax.swing.JComboBox<>();
+        TextField_endereco = new javax.swing.JTextField();
+        jComboBox_proprietario = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         btn_excluir = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
@@ -46,11 +68,9 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        TextField_name_user1 = new javax.swing.JTextField();
+        TextField_tamanho = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        TextField_name_user2 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        TextField_name_user3 = new javax.swing.JTextField();
+        user_id = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -110,28 +130,45 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jLabel1.setText("Número da Unidade");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 30));
 
-        TextField_name_user.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_name_user.addActionListener(new java.awt.event.ActionListener() {
+        TextField_numero.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TextField_numero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_name_userActionPerformed(evt);
+                TextField_numeroActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 220, 30));
+        jPanel3.add(TextField_numero, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel3.setText("Rua da unidade");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, 30));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, 30));
 
-        TextField_loggin_user.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_loggin_user.addActionListener(new java.awt.event.ActionListener() {
+        TextField_endereco.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TextField_endereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_loggin_userActionPerformed(evt);
+                TextField_enderecoActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_loggin_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 180, 30));
+        jPanel3.add(TextField_endereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 310, 30));
 
-        jComboBox_type_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Tipo de Unidade", "Coberturas", "Casa completa", "Kitnet", "Garagens", "Salas comerciais", " " }));
-        jPanel3.add(jComboBox_type_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 270, 30));
+        jComboBox_proprietario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox_proprietario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_proprietarioItemStateChanged(evt);
+            }
+        });
+        jComboBox_proprietario.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jComboBox_proprietarioComponentShown(evt);
+            }
+        });
+        jComboBox_proprietario.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jComboBox_proprietarioInputMethodTextChanged(evt);
+            }
+        });
+        jPanel3.add(jComboBox_proprietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 270, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Inclua as informações relativas à nova residência");
@@ -141,6 +178,16 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 50, 50));
 
         btn_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar_1.png"))); // NOI18N
+        btn_adicionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_adicionarMouseClicked(evt);
+            }
+        });
+        btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_adicionarActionPerformed(evt);
+            }
+        });
         jPanel3.add(btn_adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 50, 50));
 
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
@@ -154,54 +201,52 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "#ID", "Proprietário", "Endereço", "Número", "Tamanho"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1000, 190));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel6.setText("Tamanho da Unidade (m²)");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 30));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, -1, 30));
 
-        TextField_name_user1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_name_user1.addActionListener(new java.awt.event.ActionListener() {
+        TextField_tamanho.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TextField_tamanho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_name_user1ActionPerformed(evt);
+                TextField_tamanhoActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_name_user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 180, 30));
+        jPanel3.add(TextField_tamanho, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 50, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel7.setText("Proprietário");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, 30));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 30));
 
-        TextField_name_user2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_name_user2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_name_user2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(TextField_name_user2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 160, 30));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel8.setText("Contato Proprietário");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, -1, 30));
-
-        TextField_name_user3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_name_user3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_name_user3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(TextField_name_user3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 160, 30));
+        user_id.setEditable(false);
+        user_id.setText("jTextField1");
+        user_id.setEnabled(false);
+        user_id.setFocusable(false);
+        jPanel3.add(user_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 90, 30));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -244,25 +289,49 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextField_name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_userActionPerformed
+    private void TextField_numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_numeroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_name_userActionPerformed
+    }//GEN-LAST:event_TextField_numeroActionPerformed
 
-    private void TextField_loggin_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_loggin_userActionPerformed
+    private void TextField_enderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_enderecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_loggin_userActionPerformed
+    }//GEN-LAST:event_TextField_enderecoActionPerformed
 
-    private void TextField_name_user1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_user1ActionPerformed
+    private void TextField_tamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_tamanhoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_name_user1ActionPerformed
+    }//GEN-LAST:event_TextField_tamanhoActionPerformed
 
-    private void TextField_name_user2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_user2ActionPerformed
+    private void jComboBox_proprietarioComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioComponentShown
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_name_user2ActionPerformed
+    }//GEN-LAST:event_jComboBox_proprietarioComponentShown
 
-    private void TextField_name_user3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_user3ActionPerformed
+    private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_name_user3ActionPerformed
+    }//GEN-LAST:event_btn_adicionarActionPerformed
+
+    private void btn_adicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adicionarMouseClicked
+        String[] rowData = null;
+        tblModel.addRow(rowData);
+    }//GEN-LAST:event_btn_adicionarMouseClicked
+
+    private void jComboBox_proprietarioInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioInputMethodTextChanged
+
+    }//GEN-LAST:event_jComboBox_proprietarioInputMethodTextChanged
+
+    private void jComboBox_proprietarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioItemStateChanged
+        Object selectedItem = jComboBox_proprietario.getSelectedItem();
+        if (selectedItem != null) {
+            String selectedString = selectedItem.toString();
+
+            // Dividir a string para obter o ID
+            String[] parts = selectedString.split(" \\| ");
+
+            if (parts.length >= 2) {
+                // A segunda parte (índice 1) contém o ID
+                user_id.setText(parts[1]);
+            } 
+        } 
+    }//GEN-LAST:event_jComboBox_proprietarioItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -301,17 +370,15 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextField_loggin_user;
-    private javax.swing.JTextField TextField_name_user;
-    private javax.swing.JTextField TextField_name_user1;
-    private javax.swing.JTextField TextField_name_user2;
-    private javax.swing.JTextField TextField_name_user3;
+    private javax.swing.JTextField TextField_endereco;
+    private javax.swing.JTextField TextField_numero;
+    private javax.swing.JTextField TextField_tamanho;
     private javax.swing.JButton btn_adicionar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar;
-    private javax.swing.JComboBox<String> jComboBox_type_user;
+    private javax.swing.JComboBox<String> jComboBox_proprietario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -319,7 +386,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -329,5 +395,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField user_id;
     // End of variables declaration//GEN-END:variables
 }

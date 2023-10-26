@@ -12,16 +12,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "houses")
-public class Home implements Serializable {
+public class House implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "adress")
     private String adress;
+    
+    @Column(name = "size")
+    private int size;
+    
+    @Column(name = "number")
+    private int number;
 
     @ManyToMany(mappedBy = "houses")
     private List<User> users;
+
+    public House() {
+    }
+
+    public House(String adress, int size, int number) {
+        this.adress = adress;
+        this.size = size;
+        this.number = number;
+    } 
 
     public int getId() {
         return id;
@@ -46,4 +61,21 @@ public class Home implements Serializable {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }    
+    
 }
