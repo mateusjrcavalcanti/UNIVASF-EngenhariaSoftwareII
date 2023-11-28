@@ -3,7 +3,6 @@ package Controller;
 import Model.User;
 import java.util.List;
 import javax.persistence.TypedQuery;
-import javax.swing.ComboBoxModel;
 
 
 public class UserController extends Controller {

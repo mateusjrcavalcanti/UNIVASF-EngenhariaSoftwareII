@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,20 +23,23 @@ public class House implements Serializable {
     private String adress;
     
     @Column(name = "size")
-    private int size;
+    private int sizee;
     
     @Column(name = "number")
     private int number;
 
     @ManyToMany(mappedBy = "houses")
-    private List<User> users;
+    private List<User> users;    
 
+    @OneToMany(mappedBy = "house")
+    private List<FeeHouse> feeHouse = new ArrayList<>();
+        
     public House() {
     }
 
     public House(String adress, int size, int number) {
         this.adress = adress;
-        this.size = size;
+        this.sizee = size;
         this.number = number;
     } 
 
@@ -63,11 +68,11 @@ public class House implements Serializable {
     }
 
     public int getSize() {
-        return size;
+        return sizee;
     }
 
     public void setSize(int size) {
-        this.size = size;
+        this.sizee = size;
     }
 
     public int getNumber() {
@@ -76,6 +81,14 @@ public class House implements Serializable {
 
     public void setNumber(int number) {
         this.number = number;
-    }    
-    
+    } 
+
+    public List<FeeHouse> getFeeHouse() {
+        return feeHouse;
+    }
+
+    public void setFeeHouse(List<FeeHouse> feeHouse) {
+        this.feeHouse = feeHouse;
+    }
+      
 }

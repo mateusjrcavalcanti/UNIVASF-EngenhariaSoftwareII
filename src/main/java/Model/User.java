@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,14 +33,25 @@ public class User implements Serializable {
 
     private Boolean is_admin;
     
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Car> cars;
+    
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
       name = "users_houses",
       joinColumns = {@JoinColumn(name = "user_id")},
       inverseJoinColumns = {@JoinColumn(name = "house_id")}
-    )
-    
+    )    
     private List<House> houses;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
+    private List<Reservation> reservations;
+
+    @OneToMany(mappedBy = "userr")
+    private List<Guest> guests;
+     
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
+    private List<Message> messages; 
 
     public User() {
     }
@@ -120,6 +133,31 @@ public class User implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
 	
     
 }
