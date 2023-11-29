@@ -251,39 +251,39 @@ public class TelaAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_Taxa_InfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Taxa_InfosActionPerformed
+    private void jButton_Cadastro_VeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_VeiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Taxa_InfosActionPerformed
-
-    private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
-
-    private void jButton_Controle_VisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_VisitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Controle_VisitanteActionPerformed
+    }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
     private void jButton_Controle_AcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_AcessoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Controle_AcessoActionPerformed
 
-    private void jButton_Cadastro_VeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_VeiculoActionPerformed
+    private void jButton_Controle_VisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_VisitanteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
+    }//GEN-LAST:event_jButton_Controle_VisitanteActionPerformed
+
+    private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
+
+    private void jButton_Cadastro_ResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_ResidenciaActionPerformed
+
+        TelaCadastroResidencia tela = new TelaCadastroResidencia();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton_Cadastro_ResidenciaActionPerformed
 
     private void jButton_Cadastro_MoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_MoradorActionPerformed
         //  TelaLoading tela = new TelaLoading();
-            TelaCadastroMorador tela = new TelaCadastroMorador();
-            tela.setVisible(true);
-            tela.setLocationRelativeTo(null); 
+        TelaCadastroMorador tela = new TelaCadastroMorador();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton_Cadastro_MoradorActionPerformed
 
-    private void jButton_Cadastro_ResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_ResidenciaActionPerformed
-      
-            TelaCadastroResidencia tela = new TelaCadastroResidencia();
-            tela.setVisible(true);
-            tela.setLocationRelativeTo(null); 
-    }//GEN-LAST:event_jButton_Cadastro_ResidenciaActionPerformed
+    private void jButton_Taxa_InfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Taxa_InfosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Taxa_InfosActionPerformed
 
     /**
      * @param args the command line arguments
