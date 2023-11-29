@@ -1,7 +1,6 @@
 package Model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,9 +21,9 @@ public class User implements Serializable {
     private int id;
 
     private String name;
-    
+
     private String phone;
-    
+
     private String cpf;
 
     private String username;
@@ -32,26 +31,26 @@ public class User implements Serializable {
     private String password;
 
     private Boolean is_admin;
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Car> cars;
-    
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
       name = "users_houses",
       joinColumns = {@JoinColumn(name = "user_id")},
       inverseJoinColumns = {@JoinColumn(name = "house_id")}
-    )    
+    )
     private List<House> houses;
-    
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 
     @OneToMany(mappedBy = "userr")
     private List<Guest> guests;
-     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
-    private List<Message> messages; 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Message> messages;
 
     public User() {
     }
@@ -63,7 +62,7 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
         this.is_admin = is_admin;
-    } 
+    }
 
    public User(String name, String phone, String cpf, String username, String password) {
         this.name = name;
@@ -73,7 +72,7 @@ public class User implements Serializable {
         this.password = password;
         this.is_admin = false;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -93,7 +92,7 @@ public class User implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getPassword() {
         return password;
     }
@@ -112,8 +111,8 @@ public class User implements Serializable {
 
     public List<House> getHouses() {
         return houses;
-    }   
-    
+    }
+
     public Boolean getIs_resident(){
         return !this.houses.isEmpty();
     }
@@ -158,6 +157,6 @@ public class User implements Serializable {
         this.messages = messages;
     }
 
-	
-    
+
+
 }

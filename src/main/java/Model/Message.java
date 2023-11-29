@@ -19,8 +19,8 @@ public class Message implements Serializable {
     private int id;
 
     @Column(name = "message")
-    private String message;  
-    
+    private String message;
+
      @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -31,9 +31,9 @@ public class Message implements Serializable {
     public Message() {
     }
 
-    public Message(String message, LocalDateTime createdAt, User user) {
+    public Message(String message, User user) {
         this.message = message;
-        this.createdAt = createdAt;
+        this.createdAt = LocalDateTime.now();
         this.user = user;
     }
 
@@ -60,5 +60,5 @@ public class Message implements Serializable {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-    
+
 }

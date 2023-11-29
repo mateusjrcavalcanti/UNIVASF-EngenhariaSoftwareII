@@ -18,7 +18,7 @@ public class Car implements Serializable {
     private int id;
 
     @Column(name = "plate")
-    private String plate;       
+    private String plate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -27,10 +27,10 @@ public class Car implements Serializable {
     public Car() {
     }
 
-    public Car(String plate, User user, int number) {
+    public Car(String plate, User user) {
         this.plate = plate;
         this.user = user;
-    } 
+    }
 
     public int getId() {
         return id;
@@ -55,5 +55,5 @@ public class Car implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
 }

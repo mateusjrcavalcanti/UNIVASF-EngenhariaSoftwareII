@@ -19,18 +19,18 @@ public class Fee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "date")
-    private Date datee;
-       
+    @Column(name = "day")
+    private Integer dayy;
+
     @Column(name = "value")
     private float value;
-    
+
     @Column(name = "date_start")
     private Date dateStart;
-    
+
     @Column(name = "date_end")
     private Date dateEnd;
-    
+
     @Column(name = "type")
     private String type;
 
@@ -40,20 +40,20 @@ public class Fee implements Serializable {
     public Fee() {
     }
 
-    public Fee(Date date, float value, Date dateStart, Date dateEnd, String type) {
-        this.datee = date;
+    public Fee(Integer day, float value, Date dateStart, Date dateEnd, String type) {
+        this.dayy = day;
         this.value = value;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.type = type;
     }
 
-    public Date getDate() {
-        return datee;
+    public Integer getDay() {
+        return dayy;
     }
 
-    public void setDate(Date date) {
-        this.datee = date;
+    public void setDay(Integer day) {
+        this.dayy = day;
     }
 
     public float getValue() {
@@ -95,6 +95,6 @@ public class Fee implements Serializable {
     public void setFeeHouse(List<FeeHouse> feeHouse) {
         this.feeHouse = feeHouse;
     }
-    
-    
+
+
 }

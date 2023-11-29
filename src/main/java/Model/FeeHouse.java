@@ -1,6 +1,8 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,10 +12,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "fees_houses")
-public class FeeHouse implements Serializable {  
+public class FeeHouse implements Serializable {
 
     @Column(name = "status")
-    private String status;       
+    private String status;
+
+    @Column(name = "expiration")
+    private Date expiration;
 
     @Id
     @ManyToOne
@@ -57,6 +62,12 @@ public class FeeHouse implements Serializable {
     public void setHouse(House house) {
         this.house = house;
     }
-    
-    
+
+    public Date getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(Date expiration) {
+        this.expiration = expiration;
+    }
 }
