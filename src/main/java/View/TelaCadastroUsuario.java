@@ -32,6 +32,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        TextField_name_user = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         TextField_loggin_user = new javax.swing.JTextField();
         jComboBox_type_user = new javax.swing.JComboBox<>();
@@ -106,6 +108,18 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel1.setText("Nome:");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 30));
+
+        TextField_name_user.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TextField_name_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField_name_userActionPerformed(evt);
+            }
+        });
+        jPanel3.add(TextField_name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 250, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel3.setText("Login:");
@@ -246,6 +260,10 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TextField_name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField_name_userActionPerformed
+
     private void TextField_loggin_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_loggin_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextField_loggin_userActionPerformed
@@ -307,11 +325,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextField_loggin_user;
     private javax.swing.JTextField TextField_loggin_user1;
+    private javax.swing.JTextField TextField_name_user;
     private javax.swing.JTextField TextField_name_user1;
     private javax.swing.JButton btn_adicionar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JComboBox<String> jComboBox_type_user;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
