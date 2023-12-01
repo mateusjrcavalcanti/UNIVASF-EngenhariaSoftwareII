@@ -63,8 +63,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         btn_excluir = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
         btn_salvar = new javax.swing.JButton();
-        btn_editar = new javax.swing.JButton();
-        btn_cancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -75,7 +73,7 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LogosCondomínioMenor.png"))); // NOI18N
 
@@ -175,7 +173,7 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
-        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 50, 50));
+        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 50, 50));
 
         btn_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar_1.png"))); // NOI18N
         btn_adicionar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,12 +190,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
 
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
         jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 50, 50));
-
-        btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        jPanel3.add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 50, 50));
-
-        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
-        jPanel3.add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 50, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -374,8 +366,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
     private javax.swing.JTextField TextField_numero;
     private javax.swing.JTextField TextField_tamanho;
     private javax.swing.JButton btn_adicionar;
-    private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JComboBox<String> jComboBox_proprietario;

@@ -45,8 +45,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         btn_excluir = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
         btn_salvar = new javax.swing.JButton();
-        btn_editar = new javax.swing.JButton();
-        btn_cancelar = new javax.swing.JButton();
         jPassword_user_confirmed = new javax.swing.JPasswordField();
         jPassword_user1 = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -60,6 +58,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LogosCondomínioMenor.png"))); // NOI18N
 
@@ -167,19 +166,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
-        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 50, 50));
+        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 50, 50));
 
         btn_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar_1.png"))); // NOI18N
         jPanel3.add(btn_adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 50, 50));
 
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
         jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 50, 50));
-
-        btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        jPanel3.add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 50, 50));
-
-        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
-        jPanel3.add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 50, 50));
 
         jPassword_user_confirmed.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jPanel3.add(jPassword_user_confirmed, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 230, 30));
@@ -216,7 +209,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel11.setText("CPF:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, 30));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, 30));
 
         TextField_loggin_user1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         TextField_loggin_user1.addActionListener(new java.awt.event.ActionListener() {
@@ -335,8 +328,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField TextField_name_user;
     private javax.swing.JTextField TextField_name_user1;
     private javax.swing.JButton btn_adicionar;
-    private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JComboBox<String> jComboBox_type_user;
