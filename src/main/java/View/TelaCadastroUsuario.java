@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+
 import Controller.HouseController;
 import Controller.UserController;
 import Model.House;
@@ -12,32 +13,29 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sun.security.util.Password;
 
-
 /**
  *
  * @author tapet
  */
 public class TelaCadastroUsuario extends javax.swing.JFrame {
 
-    
-     UserController userController = new UserController(); 
-     
+    UserController userController = new UserController();
+
     public TelaCadastroUsuario() {
-        
-         
+
         initComponents();
         TxfUserID.setEnabled(false);
-        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
-        for (User user : userController.all()) {  
+        DefaultTableModel tblModelUsers = (DefaultTableModel) jTUsers.getModel();
+        for (User user : userController.all()) {
             String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getPhone()), String.valueOf(user.getCpf()), String.valueOf(user.getUsername()), String.valueOf(user.getIs_admin())};
             tblModelUsers.addRow(rowData);
         }
-        
-       System.out.printf("\n\n\n\n %s", userController.find(11));
+
+        System.out.printf("\n\n\n\n %s", userController.find(11));
         //tblModelUsers.setRowCount(0);
-      
+
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,7 +75,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         TxfUserSearch = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         btn_salvar = new javax.swing.JButton();
-        btn_salvarqaa1 = new javax.swing.JButton();
+        btn_refreshTable = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -190,6 +188,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
         jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 50, 50));
 
         btn_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar_1.png"))); // NOI18N
@@ -296,19 +299,24 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 70, 30));
 
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
-        jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 50, 50));
-
-        btn_salvarqaa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
-        btn_salvarqaa1.setIconTextGap(3);
-        btn_salvarqaa1.setMaximumSize(new java.awt.Dimension(25, 30));
-        btn_salvarqaa1.setMinimumSize(new java.awt.Dimension(25, 30));
-        btn_salvarqaa1.setPreferredSize(new java.awt.Dimension(25, 30));
-        btn_salvarqaa1.addActionListener(new java.awt.event.ActionListener() {
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_salvarqaa1ActionPerformed(evt);
+                btn_salvarActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_salvarqaa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 40, 40));
+        jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 50, 50));
+
+        btn_refreshTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
+        btn_refreshTable.setIconTextGap(3);
+        btn_refreshTable.setMaximumSize(new java.awt.Dimension(25, 30));
+        btn_refreshTable.setMinimumSize(new java.awt.Dimension(25, 30));
+        btn_refreshTable.setPreferredSize(new java.awt.Dimension(25, 30));
+        btn_refreshTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshTableActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_refreshTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 40, 40));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -376,19 +384,19 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox_type_userActionPerformed
 
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
- 
-    String nomeUser = TxfUserName.getText();
-    String telefoneUser = TxfUserPhone.getText();       
-    String usernameUser = TxfUserUsername.getText();
-    String cpfUser = TxfUserCpf.getText();
 
-    if (nomeUser.isEmpty() || telefoneUser.isEmpty() || usernameUser.isEmpty() || cpfUser.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
-    } else {
-        userController.insert(nomeUser, telefoneUser, cpfUser, usernameUser, "asd", false);
-        refreshTable();
-    }
-        
+        String nomeUser = TxfUserName.getText();
+        String telefoneUser = TxfUserPhone.getText();
+        String usernameUser = TxfUserUsername.getText();
+        String cpfUser = TxfUserCpf.getText();
+
+        if (nomeUser.isEmpty() || telefoneUser.isEmpty() || usernameUser.isEmpty() || cpfUser.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            userController.insert(nomeUser, telefoneUser, cpfUser, usernameUser, "asd", false);
+            refreshTable();
+        }
+
     }//GEN-LAST:event_btn_adicionarActionPerformed
 
     private void TxfUserCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserCpfActionPerformed
@@ -396,18 +404,17 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_TxfUserCpfActionPerformed
 
     private void jTUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTUsersMouseClicked
-       
-        
+
         int selectedRow = jTUsers.getSelectedRow();
-        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
+        DefaultTableModel tblModelUsers = (DefaultTableModel) jTUsers.getModel();
         TxfUserID.setText(tblModelUsers.getValueAt(selectedRow, 0).toString());
         TxfUserName.setText(tblModelUsers.getValueAt(selectedRow, 1).toString());
         TxfUserUsername.setText(tblModelUsers.getValueAt(selectedRow, 2).toString());
         TxfUserCpf.setText(tblModelUsers.getValueAt(selectedRow, 3).toString());
         TxfUserPhone.setText(tblModelUsers.getValueAt(selectedRow, 4).toString());
-       // TxfUserID.setText(tblModelUsers.getValueAt(selectedRow, 1).toString());
-        
-        
+        // TxfUserID.setText(tblModelUsers.getValueAt(selectedRow, 1).toString());
+
+
     }//GEN-LAST:event_jTUsersMouseClicked
 
     private void TxfUserPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserPasswordActionPerformed
@@ -415,36 +422,85 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_TxfUserPasswordActionPerformed
 
     private void TxfUserSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserSearchActionPerformed
-      
-        
+
+
     }//GEN-LAST:event_TxfUserSearchActionPerformed
 
     private void btn_salvarqaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarqaaActionPerformed
-        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
+        DefaultTableModel tblModelUsers = (DefaultTableModel) jTUsers.getModel();
         String termoBusca = TxfUserSearch.getText().toLowerCase();
         tblModelUsers.setRowCount(0);
-         for (User user : userController.all()) {
+        for (User user : userController.all()) {
             if (user.getName().toLowerCase().contains(termoBusca)) {
-                String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getPhone()), String.valueOf(user.getCpf()), String.valueOf(user.getUsername()), String.valueOf(user.getIs_admin())};
+                String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getUsername()), String.valueOf(user.getCpf()), String.valueOf(user.getPhone()), String.valueOf(user.getIs_admin())};
                 tblModelUsers.addRow(rowData);
             }
         }
-        
+
     }//GEN-LAST:event_btn_salvarqaaActionPerformed
 
-    private void btn_salvarqaa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarqaa1ActionPerformed
+    private void btn_refreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshTableActionPerformed
+        limparCampos();
         refreshTable();
-    }//GEN-LAST:event_btn_salvarqaa1ActionPerformed
 
-    
-    void refreshTable(){     
-        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
-        tblModelUsers.setRowCount(0);        
-        for (User user : userController.all()) {  
-        String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getPhone()), String.valueOf(user.getCpf()), String.valueOf(user.getUsername()), String.valueOf(user.getIs_admin())};
-        tblModelUsers.addRow(rowData);
+    }//GEN-LAST:event_btn_refreshTableActionPerformed
+
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        try {
+            int idSelected = Integer.parseInt(TxfUserID.getText());
+
+            userController.delete(idSelected);
+
+            refreshTable();
+        } catch (NumberFormatException e) {
+            // Se o texto não puder ser convertido para um número inteiro
+            JOptionPane.showMessageDialog(this, "Por favor, insira um ID válido.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            // Captura de exceções genéricas
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro durante a exclusão do usuário.", "Erro", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+
+        try {
+            String nomeUser = TxfUserName.getText();
+            String telefoneUser = TxfUserPhone.getText();
+            String usernameUser = TxfUserUsername.getText();
+            String cpfUser = TxfUserCpf.getText();
+            int idSelected = Integer.parseInt(TxfUserID.getText());
+
+            userController.update(idSelected, nomeUser, telefoneUser, cpfUser, usernameUser, "asd", true);
+
+            //  JOptionPane.showMessageDialog(this, "Usuário atualizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            refreshTable();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira um ID válido.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro durante a atualização do usuário.", "Erro", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    void refreshTable() {
+        DefaultTableModel tblModelUsers = (DefaultTableModel) jTUsers.getModel();
+        tblModelUsers.setRowCount(0);
+        for (User user : userController.all()) {
+            String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getUsername()), String.valueOf(user.getCpf()), String.valueOf(user.getPhone()), String.valueOf(user.getIs_admin())};
+            tblModelUsers.addRow(rowData);
         }
     }
+
+    private void limparCampos() {
+        TxfUserName.setText("");
+        TxfUserPhone.setText("");
+        TxfUserUsername.setText("");
+        TxfUserCpf.setText("");
+        TxfUserID.setText("");
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -493,9 +549,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField TxfUserUsername;
     private javax.swing.JButton btn_adicionar;
     private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_refreshTable;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_salvarqaa;
-    private javax.swing.JButton btn_salvarqaa1;
     private javax.swing.JComboBox<String> jComboBox_type_user;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
