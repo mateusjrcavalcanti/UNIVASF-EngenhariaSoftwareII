@@ -3,17 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+
 import Controller.CarController;
 import Controller.UserController;
 import Controller.HouseController;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author toim6
  */
 public class TelaAdmin extends javax.swing.JFrame {
-   
 
     /**
      * Creates new form TelaInicio
@@ -44,6 +47,10 @@ public class TelaAdmin extends javax.swing.JFrame {
         jButton_Controle_Acesso = new javax.swing.JButton();
         jButton_Cadastro_Veiculo = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        TxfMensagemUser = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextAreaUsers = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -139,15 +146,49 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
+        TxfMensagemUser.setToolTipText("");
+        TxfMensagemUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxfMensagemUserActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("enviar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        TextAreaUsers.setColumns(20);
+        TextAreaUsers.setLineWrap(true);
+        TextAreaUsers.setRows(5);
+        jScrollPane1.setViewportView(TextAreaUsers);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(TxfMensagemUser, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxfMensagemUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 390, 260));
@@ -258,7 +299,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_Cadastro_VeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_VeiculoActionPerformed
-        
+
     }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
     private void jButton_Controle_AcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_AcessoActionPerformed
@@ -266,7 +307,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Controle_AcessoActionPerformed
 
     private void jButton_Controle_VisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_VisitanteActionPerformed
-        
+
     }//GEN-LAST:event_jButton_Controle_VisitanteActionPerformed
 
     private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
@@ -291,6 +332,25 @@ public class TelaAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Taxa_InfosActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (TxfMensagemUser.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira alguma mensagem.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            enviartexto();
+            TxfMensagemUser.setText("");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TxfMensagemUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfMensagemUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxfMensagemUserActionPerformed
+
+    void enviartexto() {
+        TextAreaUsers.append("\n[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]  {username}  " + TxfMensagemUser.getText()); // FALTA IMPLEMENTAR O BD
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -300,7 +360,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
+
         //</editor-fold>
         //</editor-fold>
 
@@ -313,6 +373,9 @@ public class TelaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea TextAreaUsers;
+    private javax.swing.JTextField TxfMensagemUser;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Cadastro_Morador;
     private javax.swing.JButton jButton_Cadastro_Residencia;
     private javax.swing.JButton jButton_Cadastro_Veiculo;
@@ -335,6 +398,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
