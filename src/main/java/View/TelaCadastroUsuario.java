@@ -3,6 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+import Controller.HouseController;
+import Controller.UserController;
+import Model.House;
+import Model.User;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sun.security.util.Password;
+
 
 /**
  *
@@ -10,13 +19,25 @@ package View;
  */
 public class TelaCadastroUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaUsuário
-     */
+    
+     UserController userController = new UserController(); 
+     
     public TelaCadastroUsuario() {
+        
+         
         initComponents();
+        TxfUserID.setEnabled(false);
+        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
+        for (User user : userController.all()) {  
+            String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getPhone()), String.valueOf(user.getCpf()), String.valueOf(user.getUsername()), String.valueOf(user.getIs_admin())};
+            tblModelUsers.addRow(rowData);
+        }
+        
+       System.out.printf("\n\n\n\n %s", userController.find(11));
+        //tblModelUsers.setRowCount(0);
+      
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,9 +54,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TextField_name_user = new javax.swing.JTextField();
+        TxfUserName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        TextField_loggin_user = new javax.swing.JTextField();
+        TxfUserUsername = new javax.swing.JTextField();
         jComboBox_type_user = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -44,20 +65,23 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         btn_excluir = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
-        btn_salvar = new javax.swing.JButton();
-        jPassword_user_confirmed = new javax.swing.JPasswordField();
-        jPassword_user1 = new javax.swing.JPasswordField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        TextField_name_user1 = new javax.swing.JTextField();
+        btn_salvarqaa = new javax.swing.JButton();
+        TxfUserPassword = new javax.swing.JPasswordField();
+        TxfUserID = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        TextField_loggin_user1 = new javax.swing.JTextField();
+        TxfUserPhone = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTUsers = new javax.swing.JTable();
+        TxfUserCpf = new javax.swing.JTextField();
+        TxfUserSearch = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        btn_salvar = new javax.swing.JButton();
+        btn_salvarqaa1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LogosCondomínioMenor.png"))); // NOI18N
@@ -111,47 +135,47 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel1.setText("Nome:");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 30));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 30));
 
-        TextField_name_user.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_name_user.addActionListener(new java.awt.event.ActionListener() {
+        TxfUserName.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_name_userActionPerformed(evt);
+                TxfUserNameActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 250, 30));
+        jPanel3.add(TxfUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 250, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel3.setText("Login:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, 30));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 30));
 
-        TextField_loggin_user.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_loggin_user.addActionListener(new java.awt.event.ActionListener() {
+        TxfUserUsername.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfUserUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_loggin_userActionPerformed(evt);
+                TxfUserUsernameActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_loggin_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 230, 30));
+        jPanel3.add(TxfUserUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 250, 30));
 
-        jComboBox_type_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Tipo de Usuário", "Administrador", "Funcionário", " " }));
+        jComboBox_type_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Tipo de Usuário", "Administrador", "Funcionário", "Morador" }));
         jComboBox_type_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_type_userActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox_type_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 270, 30));
+        jPanel3.add(jComboBox_type_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 270, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel6.setText("Senha:");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 30));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 70, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel7.setText("Confirmar Senha:");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, 30));
+        jLabel7.setText("Telefone:");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel8.setText("Código de Acesso:");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, 30));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, -1, 30));
 
         jTextField_code_access.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTextField_code_access.addActionListener(new java.awt.event.ActionListener() {
@@ -159,65 +183,132 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 jTextField_code_accessActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField_code_access, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 160, 130, 30));
+        jPanel3.add(jTextField_code_access, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 120, 130, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Insira as informações referentes ao novo usuário");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
-        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 50, 50));
+        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 50, 50));
 
         btn_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar_1.png"))); // NOI18N
-        jPanel3.add(btn_adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 50, 50));
-
-        btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
-        jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 50, 50));
-
-        jPassword_user_confirmed.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jPanel3.add(jPassword_user_confirmed, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 230, 30));
-
-        jPassword_user1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jPanel3.add(jPassword_user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 250, 30));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 1000, 160));
-
-        TextField_name_user1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_name_user1.addActionListener(new java.awt.event.ActionListener() {
+        btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_name_user1ActionPerformed(evt);
+                btn_adicionarActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_name_user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 250, 30));
+        jPanel3.add(btn_adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 50, 50));
+
+        btn_salvarqaa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupa.png"))); // NOI18N
+        btn_salvarqaa.setIconTextGap(3);
+        btn_salvarqaa.setMaximumSize(new java.awt.Dimension(25, 30));
+        btn_salvarqaa.setMinimumSize(new java.awt.Dimension(25, 30));
+        btn_salvarqaa.setPreferredSize(new java.awt.Dimension(25, 30));
+        btn_salvarqaa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarqaaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_salvarqaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 250, 40, 40));
+
+        TxfUserPassword.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfUserPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxfUserPasswordActionPerformed(evt);
+            }
+        });
+        jPanel3.add(TxfUserPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 230, 30));
+
+        TxfUserID.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfUserID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxfUserIDActionPerformed(evt);
+            }
+        });
+        jPanel3.add(TxfUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 250, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel10.setText("ID:");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, 30));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel11.setText("CPF:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, 30));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, 30));
 
-        TextField_loggin_user1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_loggin_user1.addActionListener(new java.awt.event.ActionListener() {
+        TxfUserPhone.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfUserPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_loggin_user1ActionPerformed(evt);
+                TxfUserPhoneActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_loggin_user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 230, 30));
+        jPanel3.add(TxfUserPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 230, 30));
+
+        jTUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#ID", "Nome", "Username", "CPF", "Telefone", "ADM"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTUsersMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTUsers);
+
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1000, 230));
+
+        TxfUserCpf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfUserCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxfUserCpfActionPerformed(evt);
+            }
+        });
+        jPanel3.add(TxfUserCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 230, 30));
+
+        TxfUserSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxfUserSearchActionPerformed(evt);
+            }
+        });
+        jPanel3.add(TxfUserSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 230, 40));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setText("Pesquisar:");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 70, 30));
+
+        btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
+        jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 50, 50));
+
+        btn_salvarqaa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
+        btn_salvarqaa1.setIconTextGap(3);
+        btn_salvarqaa1.setMaximumSize(new java.awt.Dimension(25, 30));
+        btn_salvarqaa1.setMinimumSize(new java.awt.Dimension(25, 30));
+        btn_salvarqaa1.setPreferredSize(new java.awt.Dimension(25, 30));
+        btn_salvarqaa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarqaa1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_salvarqaa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 40, 40));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -260,30 +351,100 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextField_name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_userActionPerformed
+    private void TxfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_name_userActionPerformed
+    }//GEN-LAST:event_TxfUserNameActionPerformed
 
-    private void TextField_loggin_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_loggin_userActionPerformed
+    private void TxfUserUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_loggin_userActionPerformed
+    }//GEN-LAST:event_TxfUserUsernameActionPerformed
 
     private void jTextField_code_accessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_code_accessActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_code_accessActionPerformed
 
-    private void TextField_name_user1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_user1ActionPerformed
+    private void TxfUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_name_user1ActionPerformed
+    }//GEN-LAST:event_TxfUserIDActionPerformed
 
-    private void TextField_loggin_user1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_loggin_user1ActionPerformed
+    private void TxfUserPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserPhoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_loggin_user1ActionPerformed
+    }//GEN-LAST:event_TxfUserPhoneActionPerformed
 
     private void jComboBox_type_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_type_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_type_userActionPerformed
 
+    private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
+ 
+    String nomeUser = TxfUserName.getText();
+    String telefoneUser = TxfUserPhone.getText();       
+    String usernameUser = TxfUserUsername.getText();
+    String cpfUser = TxfUserCpf.getText();
+
+    if (nomeUser.isEmpty() || telefoneUser.isEmpty() || usernameUser.isEmpty() || cpfUser.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+    } else {
+        userController.insert(nomeUser, telefoneUser, cpfUser, usernameUser, "asd", false);
+        refreshTable();
+    }
+        
+    }//GEN-LAST:event_btn_adicionarActionPerformed
+
+    private void TxfUserCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxfUserCpfActionPerformed
+
+    private void jTUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTUsersMouseClicked
+       
+        
+        int selectedRow = jTUsers.getSelectedRow();
+        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
+        TxfUserID.setText(tblModelUsers.getValueAt(selectedRow, 0).toString());
+        TxfUserName.setText(tblModelUsers.getValueAt(selectedRow, 1).toString());
+        TxfUserUsername.setText(tblModelUsers.getValueAt(selectedRow, 2).toString());
+        TxfUserCpf.setText(tblModelUsers.getValueAt(selectedRow, 3).toString());
+        TxfUserPhone.setText(tblModelUsers.getValueAt(selectedRow, 4).toString());
+       // TxfUserID.setText(tblModelUsers.getValueAt(selectedRow, 1).toString());
+        
+        
+    }//GEN-LAST:event_jTUsersMouseClicked
+
+    private void TxfUserPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxfUserPasswordActionPerformed
+
+    private void TxfUserSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserSearchActionPerformed
+      
+        
+    }//GEN-LAST:event_TxfUserSearchActionPerformed
+
+    private void btn_salvarqaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarqaaActionPerformed
+        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
+        String termoBusca = TxfUserSearch.getText().toLowerCase();
+        tblModelUsers.setRowCount(0);
+         for (User user : userController.all()) {
+            if (user.getName().toLowerCase().contains(termoBusca)) {
+                String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getPhone()), String.valueOf(user.getCpf()), String.valueOf(user.getUsername()), String.valueOf(user.getIs_admin())};
+                tblModelUsers.addRow(rowData);
+            }
+        }
+        
+    }//GEN-LAST:event_btn_salvarqaaActionPerformed
+
+    private void btn_salvarqaa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarqaa1ActionPerformed
+        refreshTable();
+    }//GEN-LAST:event_btn_salvarqaa1ActionPerformed
+
+    
+    void refreshTable(){     
+        DefaultTableModel tblModelUsers = (DefaultTableModel)jTUsers.getModel();
+        tblModelUsers.setRowCount(0);        
+        for (User user : userController.all()) {  
+        String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getPhone()), String.valueOf(user.getCpf()), String.valueOf(user.getUsername()), String.valueOf(user.getIs_admin())};
+        tblModelUsers.addRow(rowData);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -323,17 +484,23 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextField_loggin_user;
-    private javax.swing.JTextField TextField_loggin_user1;
-    private javax.swing.JTextField TextField_name_user;
-    private javax.swing.JTextField TextField_name_user1;
+    private javax.swing.JTextField TxfUserCpf;
+    private javax.swing.JTextField TxfUserID;
+    private javax.swing.JTextField TxfUserName;
+    private javax.swing.JPasswordField TxfUserPassword;
+    private javax.swing.JTextField TxfUserPhone;
+    private javax.swing.JTextField TxfUserSearch;
+    private javax.swing.JTextField TxfUserUsername;
     private javax.swing.JButton btn_adicionar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar;
+    private javax.swing.JButton btn_salvarqaa;
+    private javax.swing.JButton btn_salvarqaa1;
     private javax.swing.JComboBox<String> jComboBox_type_user;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -348,10 +515,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPassword_user1;
-    private javax.swing.JPasswordField jPassword_user_confirmed;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTUsers;
     private javax.swing.JTextField jTextField_code_access;
     // End of variables declaration//GEN-END:variables
 }

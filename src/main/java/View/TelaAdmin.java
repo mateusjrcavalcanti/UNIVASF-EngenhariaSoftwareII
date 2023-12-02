@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+import Controller.CarController;
 import Controller.UserController;
+import Controller.HouseController;
 
 
 /**
@@ -12,7 +14,7 @@ import Controller.UserController;
  */
 public class TelaAdmin extends javax.swing.JFrame {
    
-     UserController sla = new  UserController();
+
     /**
      * Creates new form TelaInicio
      */
@@ -256,7 +258,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_Cadastro_VeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_VeiculoActionPerformed
-          sla.delete(7);
+        
     }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
     private void jButton_Controle_AcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_AcessoActionPerformed
@@ -264,7 +266,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Controle_AcessoActionPerformed
 
     private void jButton_Controle_VisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_VisitanteActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton_Controle_VisitanteActionPerformed
 
     private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
