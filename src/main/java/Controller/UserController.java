@@ -8,8 +8,12 @@ import javax.persistence.TypedQuery;
 public class UserController extends Controller {
 
     public UserController() {
+        
+        
+         
         if(this.all().isEmpty()){
             User admin = this.insert("admin", "(87) 98877-6655", "111.222.444-55", "admin", "admin", true);
+           
             System.out.println("ID: " + admin.getId());
             System.out.println("Nome: " + admin.getName());
             System.out.println("Usuário: " + admin.getUsername());

@@ -3,13 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+import Controller.UserController;
+
 
 /**
  *
  * @author toim6
  */
 public class TelaAdmin extends javax.swing.JFrame {
-
+   
+     UserController sla = new  UserController();
     /**
      * Creates new form TelaInicio
      */
@@ -253,7 +256,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_Cadastro_VeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_VeiculoActionPerformed
-        // TODO add your handling code here:
+          sla.delete(7);
     }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
     private void jButton_Controle_AcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_AcessoActionPerformed
