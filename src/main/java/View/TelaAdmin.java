@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author toim6
@@ -42,9 +43,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         jButton_Cadastro_Residencia = new javax.swing.JButton();
         jButton_Relatorio = new javax.swing.JButton();
         jButton_Reservar_Area = new javax.swing.JButton();
-        jButton_Controle_Visitante = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton_Controle_Acesso = new javax.swing.JButton();
         jButton_Cadastro_Veiculo = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         TxfMensagemUser = new javax.swing.JTextField();
@@ -80,7 +79,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Taxa_InfosActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Taxa_Infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 192, -1));
+        jPanel3.add(jButton_Taxa_Infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 210, -1));
 
         jButton_Cadastro_Morador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userpropietario.png"))); // NOI18N
         jButton_Cadastro_Morador.setText("Cadastro Morador");
@@ -89,7 +88,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Cadastro_MoradorActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Cadastro_Morador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 192, -1));
+        jPanel3.add(jButton_Cadastro_Morador, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, -1));
 
         jButton_Cadastro_Residencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa.png"))); // NOI18N
         jButton_Cadastro_Residencia.setText("Cadastro Residências");
@@ -98,42 +97,24 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Cadastro_ResidenciaActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Cadastro_Residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 192, -1));
+        jPanel3.add(jButton_Cadastro_Residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 210, -1));
 
         jButton_Relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/relatorio-de-lucro.png"))); // NOI18N
         jButton_Relatorio.setText("Relatório Mensal");
-        jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 192, -1));
+        jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 210, -1));
 
         jButton_Reservar_Area.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reserva.png"))); // NOI18N
-        jButton_Reservar_Area.setText("Reservas de Áreas");
+        jButton_Reservar_Area.setText("Cadastro de Áreas");
         jButton_Reservar_Area.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Reservar_AreaActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Reservar_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 192, -1));
-
-        jButton_Controle_Visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visita-a-casa.png"))); // NOI18N
-        jButton_Controle_Visitante.setText("Controle de Visitantes");
-        jButton_Controle_Visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Controle_VisitanteActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton_Controle_Visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 192, -1));
+        jPanel3.add(jButton_Reservar_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 210, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel3.setText("Solicitações:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 104, -1));
-
-        jButton_Controle_Acesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cartao-de-visita.png"))); // NOI18N
-        jButton_Controle_Acesso.setText("Controles de Acesso");
-        jButton_Controle_Acesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Controle_AcessoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton_Controle_Acesso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 192, -1));
 
         jButton_Cadastro_Veiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carro-compacto.png"))); // NOI18N
         jButton_Cadastro_Veiculo.setText("Cadastro Veículos");
@@ -142,7 +123,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Cadastro_VeiculoActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Cadastro_Veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 192, -1));
+        jPanel3.add(jButton_Cadastro_Veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 210, -1));
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -299,19 +280,15 @@ public class TelaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_Cadastro_VeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_VeiculoActionPerformed
-
+           TelaCadastroCarros carrostela = new TelaCadastroCarros();
+           carrostela.setVisible(true);
+           carrostela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
-    private void jButton_Controle_AcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_AcessoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Controle_AcessoActionPerformed
-
-    private void jButton_Controle_VisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_VisitanteActionPerformed
-
-    }//GEN-LAST:event_jButton_Controle_VisitanteActionPerformed
-
     private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
-        // TODO add your handling code here:
+         HouseController casa = new HouseController();
+         
+         casa.insert("54", 30, 30);
     }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
 
     private void jButton_Cadastro_ResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_ResidenciaActionPerformed
@@ -379,8 +356,6 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Cadastro_Morador;
     private javax.swing.JButton jButton_Cadastro_Residencia;
     private javax.swing.JButton jButton_Cadastro_Veiculo;
-    private javax.swing.JButton jButton_Controle_Acesso;
-    private javax.swing.JButton jButton_Controle_Visitante;
     private javax.swing.JButton jButton_Relatorio;
     private javax.swing.JButton jButton_Reservar_Area;
     private javax.swing.JButton jButton_Taxa_Infos;

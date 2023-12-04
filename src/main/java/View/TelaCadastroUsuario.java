@@ -55,7 +55,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         TxfUserName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         TxfUserUsername = new javax.swing.JTextField();
-        jComboBox_type_user = new javax.swing.JComboBox<>();
+        jCBUsers = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -155,13 +155,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         });
         jPanel3.add(TxfUserUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 250, 30));
 
-        jComboBox_type_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Tipo de Usuário", "Administrador", "Funcionário", "Morador" }));
-        jComboBox_type_user.addActionListener(new java.awt.event.ActionListener() {
+        jCBUsers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Tipo de Usuário", "Administrador", "Funcionário", "Morador" }));
+        jCBUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_type_userActionPerformed(evt);
+                jCBUsersActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox_type_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 270, 30));
+        jPanel3.add(jCBUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 270, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel6.setText("Senha:");
@@ -379,9 +379,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxfUserPhoneActionPerformed
 
-    private void jComboBox_type_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_type_userActionPerformed
+    private void jCBUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUsersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_type_userActionPerformed
+    }//GEN-LAST:event_jCBUsersActionPerformed
+
+    boolean checkTipoUser() {
+        String tipoUser = (String) jCBUsers.getSelectedItem();
+        return tipoUser.equals("Administrador");
+    }
 
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
 
@@ -393,7 +398,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         if (nomeUser.isEmpty() || telefoneUser.isEmpty() || usernameUser.isEmpty() || cpfUser.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
-            userController.insert(nomeUser, telefoneUser, cpfUser, usernameUser, "asd", false);
+            userController.insert(nomeUser, telefoneUser, cpfUser, usernameUser, "asd", checkTipoUser());
             refreshTable();
         }
 
@@ -472,7 +477,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             String cpfUser = TxfUserCpf.getText();
             int idSelected = Integer.parseInt(TxfUserID.getText());
 
-            userController.update(idSelected, nomeUser, telefoneUser, cpfUser, usernameUser, "asd", true);
+            userController.update(idSelected, nomeUser, telefoneUser, cpfUser, usernameUser, "asd", checkTipoUser());
 
             //  JOptionPane.showMessageDialog(this, "Usuário atualizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             refreshTable();
@@ -552,7 +557,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btn_refreshTable;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_salvarqaa;
-    private javax.swing.JComboBox<String> jComboBox_type_user;
+    private javax.swing.JComboBox<String> jCBUsers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
