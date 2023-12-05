@@ -31,7 +31,7 @@ public class TelaLoading extends javax.swing.JFrame {
                             jLabelShowProgress.setText("Carregando Tabelas...");
                         } else if (jProgressBar.getValue() == 100) {
                             jLabelShowProgress.setText("Conectado ao Sistema");
-                            TelaRoot tela = new TelaRoot();
+                            TelaAdmin tela = new TelaAdmin();
                             tela.setVisible(true);
                             dispose();
                         }

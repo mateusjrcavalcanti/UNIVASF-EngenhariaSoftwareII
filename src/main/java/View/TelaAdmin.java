@@ -4,6 +4,15 @@
  */
 package View;
 
+import Controller.CarController;
+import Controller.UserController;
+import Controller.HouseController;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author toim6
@@ -34,11 +43,13 @@ public class TelaAdmin extends javax.swing.JFrame {
         jButton_Cadastro_Residencia = new javax.swing.JButton();
         jButton_Relatorio = new javax.swing.JButton();
         jButton_Reservar_Area = new javax.swing.JButton();
-        jButton_Controle_Visitante = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton_Controle_Acesso = new javax.swing.JButton();
         jButton_Cadastro_Veiculo = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        TxfMensagemUser = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextAreaUsers = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -51,6 +62,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,7 +79,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Taxa_InfosActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Taxa_Infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 192, -1));
+        jPanel3.add(jButton_Taxa_Infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 210, -1));
 
         jButton_Cadastro_Morador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userpropietario.png"))); // NOI18N
         jButton_Cadastro_Morador.setText("Cadastro Morador");
@@ -76,7 +88,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Cadastro_MoradorActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Cadastro_Morador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 192, -1));
+        jPanel3.add(jButton_Cadastro_Morador, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, -1));
 
         jButton_Cadastro_Residencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa.png"))); // NOI18N
         jButton_Cadastro_Residencia.setText("Cadastro Residências");
@@ -85,42 +97,24 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Cadastro_ResidenciaActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Cadastro_Residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 192, -1));
+        jPanel3.add(jButton_Cadastro_Residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 210, -1));
 
         jButton_Relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/relatorio-de-lucro.png"))); // NOI18N
         jButton_Relatorio.setText("Relatório Mensal");
-        jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 192, -1));
+        jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 210, -1));
 
         jButton_Reservar_Area.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reserva.png"))); // NOI18N
-        jButton_Reservar_Area.setText("Reservas de Áreas");
+        jButton_Reservar_Area.setText("Cadastro de Áreas");
         jButton_Reservar_Area.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Reservar_AreaActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Reservar_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 192, -1));
-
-        jButton_Controle_Visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visita-a-casa.png"))); // NOI18N
-        jButton_Controle_Visitante.setText("Controle de Visitantes");
-        jButton_Controle_Visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Controle_VisitanteActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton_Controle_Visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 192, -1));
+        jPanel3.add(jButton_Reservar_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 210, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel3.setText("Solicitações:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 104, -1));
-
-        jButton_Controle_Acesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cartao-de-visita.png"))); // NOI18N
-        jButton_Controle_Acesso.setText("Controles de Acesso");
-        jButton_Controle_Acesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Controle_AcessoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton_Controle_Acesso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 192, -1));
 
         jButton_Cadastro_Veiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carro-compacto.png"))); // NOI18N
         jButton_Cadastro_Veiculo.setText("Cadastro Veículos");
@@ -129,19 +123,53 @@ public class TelaAdmin extends javax.swing.JFrame {
                 jButton_Cadastro_VeiculoActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Cadastro_Veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 192, -1));
+        jPanel3.add(jButton_Cadastro_Veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 210, -1));
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
+
+        TxfMensagemUser.setToolTipText("");
+        TxfMensagemUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxfMensagemUserActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("enviar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        TextAreaUsers.setColumns(20);
+        TextAreaUsers.setLineWrap(true);
+        TextAreaUsers.setRows(5);
+        jScrollPane1.setViewportView(TextAreaUsers);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(TxfMensagemUser, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxfMensagemUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 390, 260));
@@ -252,19 +280,15 @@ public class TelaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_Cadastro_VeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_VeiculoActionPerformed
-        // TODO add your handling code here:
+           TelaCadastroCarros carrostela = new TelaCadastroCarros();
+           carrostela.setVisible(true);
+           carrostela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
-    private void jButton_Controle_AcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_AcessoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Controle_AcessoActionPerformed
-
-    private void jButton_Controle_VisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_VisitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Controle_VisitanteActionPerformed
-
     private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
-        // TODO add your handling code here:
+         HouseController casa = new HouseController();
+         
+         casa.insert("54", 30, 30);
     }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
 
     private void jButton_Cadastro_ResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_ResidenciaActionPerformed
@@ -276,7 +300,7 @@ public class TelaAdmin extends javax.swing.JFrame {
 
     private void jButton_Cadastro_MoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_MoradorActionPerformed
         //  TelaLoading tela = new TelaLoading();
-        TelaCadastroMorador tela = new TelaCadastroMorador();
+        TelaCadastroUsuario tela = new TelaCadastroUsuario();
         tela.setVisible(true);
         tela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton_Cadastro_MoradorActionPerformed
@@ -284,6 +308,25 @@ public class TelaAdmin extends javax.swing.JFrame {
     private void jButton_Taxa_InfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Taxa_InfosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Taxa_InfosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (TxfMensagemUser.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira alguma mensagem.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            enviartexto();
+            TxfMensagemUser.setText("");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TxfMensagemUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfMensagemUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxfMensagemUserActionPerformed
+
+    void enviartexto() {
+        TextAreaUsers.append("\n[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]  {username}  " + TxfMensagemUser.getText()); // FALTA IMPLEMENTAR O BD
+    }
 
     /**
      * @param args the command line arguments
@@ -294,39 +337,25 @@ public class TelaAdmin extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaRoot().setVisible(true);
+                new TelaAdmin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea TextAreaUsers;
+    private javax.swing.JTextField TxfMensagemUser;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Cadastro_Morador;
     private javax.swing.JButton jButton_Cadastro_Residencia;
     private javax.swing.JButton jButton_Cadastro_Veiculo;
-    private javax.swing.JButton jButton_Controle_Acesso;
-    private javax.swing.JButton jButton_Controle_Visitante;
     private javax.swing.JButton jButton_Relatorio;
     private javax.swing.JButton jButton_Reservar_Area;
     private javax.swing.JButton jButton_Taxa_Infos;
@@ -344,6 +373,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

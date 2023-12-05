@@ -34,6 +34,8 @@ public class HouseController extends Controller {
         }
     }
     
+    
+    
     public House insert(String adress, int size, int number) {        
         try {
             this.conn();

@@ -33,10 +33,11 @@ public class TelaMorador extends javax.swing.JFrame {
         jButton_Relatorio = new javax.swing.JButton();
         jButton_Reservar_Area = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton_Controle_Acesso = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         TextField_name_user = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -65,11 +66,16 @@ public class TelaMorador extends javax.swing.JFrame {
                 jButton_Taxa_InfosActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Taxa_Infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 192, -1));
+        jPanel3.add(jButton_Taxa_Infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 310, -1));
 
         jButton_Relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/relatorio-de-lucro.png"))); // NOI18N
         jButton_Relatorio.setText("Relatório Mensal");
-        jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 192, -1));
+        jButton_Relatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RelatorioActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 310, -1));
 
         jButton_Reservar_Area.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reserva.png"))); // NOI18N
         jButton_Reservar_Area.setText("Reservar Áreas");
@@ -78,20 +84,11 @@ public class TelaMorador extends javax.swing.JFrame {
                 jButton_Reservar_AreaActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_Reservar_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 192, -1));
+        jPanel3.add(jButton_Reservar_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 310, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel3.setText("Solicitações:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 104, -1));
-
-        jButton_Controle_Acesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cartao-de-visita.png"))); // NOI18N
-        jButton_Controle_Acesso.setText("Controles de Acesso");
-        jButton_Controle_Acesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Controle_AcessoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton_Controle_Acesso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 192, -1));
+        jLabel3.setText("Informações gerais:");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, -1));
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -108,9 +105,6 @@ public class TelaMorador extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 390, 200));
 
-        jLabel6.setText("O QUE BOTAR?");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 276, 170, 30));
-
         TextField_name_user.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         TextField_name_user.setToolTipText("Digite aqui sua mensagem  (CHAT CONDOMINIO)");
         TextField_name_user.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +113,16 @@ public class TelaMorador extends javax.swing.JFrame {
             }
         });
         jPanel3.add(TextField_name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 390, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel7.setText("Solicitações:");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 104, -1));
+
+        jLabel8.setText("Código de acesso: 01");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, -1));
+
+        jLabel9.setText("Nome: Pedro Henrique");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 170, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LogosCondomínioMenor.png"))); // NOI18N
 
@@ -166,7 +170,7 @@ public class TelaMorador extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 129, Short.MAX_VALUE)
+            .addGap(0, 134, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -233,13 +237,13 @@ public class TelaMorador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
 
-    private void jButton_Controle_AcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Controle_AcessoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Controle_AcessoActionPerformed
-
     private void TextField_name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextField_name_userActionPerformed
+
+    private void jButton_RelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RelatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_RelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,36 +254,20 @@ public class TelaMorador extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaRoot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+       
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaRoot().setVisible(true);
+                new TelaAdmin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextField_name_user;
-    private javax.swing.JButton jButton_Controle_Acesso;
     private javax.swing.JButton jButton_Relatorio;
     private javax.swing.JButton jButton_Reservar_Area;
     private javax.swing.JButton jButton_Taxa_Infos;
@@ -288,7 +276,9 @@ public class TelaMorador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
