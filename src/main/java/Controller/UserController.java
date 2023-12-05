@@ -1,6 +1,8 @@
 package Controller;
 
+import Model.House;
 import Model.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
@@ -19,18 +21,18 @@ public class UserController extends Controller {
             System.out.println("Usuário: " + admin.getUsername());
         }
     }
-        
+
     public User find(int id) {
         try {
             this.conn();
             User result = this.entityManager.find(User.class, id);
             return result;
-        } finally {            
+        } finally {
             this.close();
         }
     }
-    
-    public List<User> all() {        
+
+    public List<User> all() {
         try {
             this.conn();
             String jpql = "SELECT c FROM User c";
@@ -39,12 +41,12 @@ public class UserController extends Controller {
             List<User> result = query.getResultList();
 
             return result;
-        } finally {            
+        } finally {
             this.close();
         }
     }
-    
-    public User insert(String name, String phone, String cpf, String username, String password, Boolean is_admin) {        
+
+    public User insert(String name, String phone, String cpf, String username, String password, Boolean is_admin) {
         try {
             this.conn();
             User result = new User(name, phone, cpf, username, password, is_admin);
@@ -58,16 +60,16 @@ public class UserController extends Controller {
 
             // O objeto agora contém o ID gerado
             return result;
-        } finally {            
+        } finally {
             this.close();
         }
     }
-    
-    public User insert(String name, String phone, String cpf, String username, String password) {        
+
+    public User insert(String name, String phone, String cpf, String username, String password) {
         return insert(name, phone, cpf, username, password,  false);
     }
-    
-    public User update(int id, String name, String phone, String cpf, String username, String password, Boolean is_admin) {        
+
+    public User update(int id, String name, String phone, String cpf, String username, String password, Boolean is_admin) {
         try {
             this.conn();
             User result = this.entityManager.find(User.class, id);
@@ -79,7 +81,7 @@ public class UserController extends Controller {
             result.setPhone(phone);
             result.setUsername(username);
             result.setIs_admin(is_admin);
-            
+
             this.entityManager.getTransaction().begin();
             result = this.entityManager.merge(result);
             this.entityManager.getTransaction().commit();
@@ -88,12 +90,12 @@ public class UserController extends Controller {
         } else {
             return null;
         }
-        } finally {            
+        } finally {
             this.close();
         }
     }
-    
-    public boolean delete(int id) {      
+
+    public boolean delete(int id) {
         try {
             this.conn();
             User result = this.entityManager.find(User.class, id);
@@ -106,8 +108,37 @@ public class UserController extends Controller {
             } else {
                 return false;
             }
-        } finally {            
+        } finally {
             this.close();
         }
-    }      
+    }
+
+    public void addUserToHouse(User user, House house) {
+        try {
+            this.conn();
+
+            if (user != null && house != null) {
+                List<House> userHouses = user.getHouses();
+                if (userHouses == null) {
+                    userHouses = new ArrayList<>();
+                }
+                userHouses.add(house);
+                user.setHouses(userHouses);
+
+                List<User> houseUsers = house.getUsers();
+                if (houseUsers == null) {
+                    houseUsers = new ArrayList<>();
+                }
+                houseUsers.add(user);
+                house.setUsers(houseUsers);
+
+                this.entityManager.getTransaction().begin();
+                this.entityManager.merge(user);
+                this.entityManager.merge(house);
+                this.entityManager.getTransaction().commit();
+            }
+        } finally {
+            this.close();
+        }
+    }
 }
