@@ -4,8 +4,10 @@
  */
 package View;
 
+import Controller.CarController;
 import Controller.HouseController;
 import Controller.UserController;
+import Model.Car;
 import Model.House;
 import Model.User;
 import java.util.Arrays;
@@ -20,19 +22,26 @@ import sun.security.util.Password;
 public class TelaCadastroCarros extends javax.swing.JFrame {
 
     UserController userController = new UserController();
-
+    HouseController houseController = new HouseController();  
+    CarController carController = new CarController();
+    
     public TelaCadastroCarros() {
   
-        HouseController houseController = new HouseController();        
+              
         
-        initComponents();
-        
-        for (User user : userController.all()) {           
-            jComboBox_proprietarioCarro.addItem(user.getName() + " | " + user.getId());
+        initComponents();     
+        DefaultTableModel tblModelUsers = (DefaultTableModel) jTCars.getModel();
+        for (Car user : carController.all() ) {                 
+            
+            String[] rowData = {String.valueOf(user.getId()), String.valueOf(user.getPlate()), String.valueOf(user.getUser()) };
+            tblModelUsers.addRow(rowData);
+          
         }
-        
-     
+
     
+
+             
+            
     }
     
 
@@ -63,8 +72,8 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
         btn_salvar = new javax.swing.JButton();
         btn_refreshTable = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox_proprietarioCarro = new javax.swing.JComboBox<>();
+        jTCars = new javax.swing.JTable();
+        TxfGetIDPlaca = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -117,12 +126,12 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
             .addGap(0, 19, Short.MAX_VALUE)
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Carros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Veículos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel1.setText("Placa:");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
+        jLabel1.setText("Placa do veículo:");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 120, 30));
 
         TxfUserName.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         TxfUserName.addActionListener(new java.awt.event.ActionListener() {
@@ -130,10 +139,10 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                 TxfUserNameActionPerformed(evt);
             }
         });
-        jPanel3.add(TxfUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 250, 30));
+        jPanel3.add(TxfUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 250, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setText("Insira as informações referentes ao novo carro");
+        jLabel9.setText("Insira as informações referentes ao novo Veículo");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
@@ -142,7 +151,7 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                 btn_excluirActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 50, 50));
+        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 50, 50));
 
         btn_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar_1.png"))); // NOI18N
         btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +159,7 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                 btn_adicionarActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 50, 50));
+        jPanel3.add(btn_adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 50, 50));
 
         btn_salvarqaa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupa.png"))); // NOI18N
         btn_salvarqaa.setIconTextGap(3);
@@ -162,22 +171,22 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                 btn_salvarqaaActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_salvarqaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, 40, 40));
+        jPanel3.add(btn_salvarqaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 40, 40));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel11.setText("Dono:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 50, 30));
+        jLabel11.setText("Código de acesso do Dono:");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 220, 30));
 
         TxfUserSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxfUserSearchActionPerformed(evt);
             }
         });
-        jPanel3.add(TxfUserSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 230, 40));
+        jPanel3.add(TxfUserSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 230, 40));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setText("Pesquisar placa:");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 110, 40));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 110, 40));
 
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +194,7 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                 btn_salvarActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 50, 50));
+        jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 50, 50));
 
         btn_refreshTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
         btn_refreshTable.setIconTextGap(3);
@@ -197,9 +206,9 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                 btn_refreshTableActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_refreshTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 300, 40, 40));
+        jPanel3.add(btn_refreshTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 240, 40, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTCars.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -222,13 +231,16 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTCars);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 350, 1000, 180));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 300, 1000, 230));
 
-        jComboBox_proprietarioCarro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha um Dono" }));
-        jComboBox_proprietarioCarro.setToolTipText("");
-        jPanel3.add(jComboBox_proprietarioCarro, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 230, 30));
+        TxfGetIDPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxfGetIDPlacaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(TxfGetIDPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 150, 30));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -268,23 +280,19 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
                     .addContainerGap(576, Short.MAX_VALUE)))
         );
 
-        jPanel3.getAccessibleContext().setAccessibleName("Cadastro de Carros");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TxfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserNameActionPerformed
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_TxfUserNameActionPerformed
 
   
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
-
      
     }//GEN-LAST:event_btn_adicionarActionPerformed
 
     private void TxfUserSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserSearchActionPerformed
-
 
     }//GEN-LAST:event_TxfUserSearchActionPerformed
 
@@ -304,6 +312,10 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
 
        
     }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void TxfGetIDPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfGetIDPlacaActionPerformed
+     // TxfGetIDPlaca
+    }//GEN-LAST:event_TxfGetIDPlacaActionPerformed
 
    
     /**
@@ -345,6 +357,7 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TxfGetIDPlaca;
     private javax.swing.JTextField TxfUserName;
     private javax.swing.JTextField TxfUserSearch;
     private javax.swing.JButton btn_adicionar;
@@ -352,7 +365,6 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
     private javax.swing.JButton btn_refreshTable;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_salvarqaa;
-    private javax.swing.JComboBox<String> jComboBox_proprietarioCarro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -367,6 +379,6 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTCars;
     // End of variables declaration//GEN-END:variables
 }
