@@ -157,6 +157,8 @@ public class User implements Serializable {
         this.messages = messages;
     }
 
-
+    public void setHouses(List<House> houses) {
+        this.houses = houses;
+    }
 
 }
