@@ -172,31 +172,29 @@ public class LoginPage extends javax.swing.JFrame {
         // TBotão ao clicar faz a verificação e entra no sistema
         AuthController controller = new AuthController();
         User user = controller.auth(login_User.getText(), password_user.getText());
-        
+
         if(user == null){
             JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
         }else{
-        
+            if(login_User.getText().equals("dono"))
+            {
+                TelaLoading tela = new TelaLoading();
+                tela.setVisible(true);
+                dispose();
+            } else if(user.getIs_admin()){
+                TelaAdmin tela = new TelaAdmin();
+                tela.setVisible(true);
+                dispose();
+            } else if(user.getIs_resident()){
+                TelaMorador tela = new TelaMorador();
+                tela.setVisible(true);
+                dispose();
+
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
+            }
         }
-        
-        if(login_User.getText().equals("dono"))
-        {
-            TelaLoading tela = new TelaLoading();
-            tela.setVisible(true);
-            dispose();
-        } else if(user.getIs_admin()){        
-            TelaAdmin tela = new TelaAdmin();
-            tela.setVisible(true);
-            dispose();
-        }
-            else if(user.getIs_resident()){
-            TelaMorador tela = new TelaMorador();
-            tela.setVisible(true);
-            dispose();    
-        
-        }else{           
-            JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
-        }
+
     }//GEN-LAST:event_jButton_LogarActionPerformed
 
     /**
@@ -206,7 +204,7 @@ public class LoginPage extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
