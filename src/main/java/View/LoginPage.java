@@ -189,7 +189,7 @@ public class LoginPage extends javax.swing.JFrame {
             tela.setVisible(true);
             dispose();
         }
-            else if(user.getIs_resident()){
+            else if(!user.getIs_admin()){
             TelaMorador tela = new TelaMorador();
             tela.setVisible(true);
             dispose();    

@@ -243,6 +243,11 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         user_id.setText("jTextField1");
         user_id.setEnabled(false);
         user_id.setFocusable(false);
+        user_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user_idActionPerformed(evt);
+            }
+        });
         jPanel3.add(user_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 90, 30));
 
         jMenu1.setText("File");
@@ -333,6 +338,10 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
     private void jComboBox_proprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_proprietarioActionPerformed
+
+    private void user_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user_idActionPerformed
 
     /**
      * @param args the command line arguments

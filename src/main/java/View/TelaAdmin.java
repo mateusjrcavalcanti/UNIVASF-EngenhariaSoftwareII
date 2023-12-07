@@ -141,6 +141,7 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
 
+        TextAreaUsers.setEditable(false);
         TextAreaUsers.setColumns(20);
         TextAreaUsers.setLineWrap(true);
         TextAreaUsers.setRows(5);
@@ -158,7 +159,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                         .addComponent(TxfMensagemUser, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,9 +287,10 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
     private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
-         HouseController casa = new HouseController();
-         
-         casa.insert("54", 30, 30);
+      
+        TelaCadastroAreasComuns cadastroTela = new TelaCadastroAreasComuns();
+        cadastroTela.setVisible(true);
+        cadastroTela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
 
     private void jButton_Cadastro_ResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_ResidenciaActionPerformed
