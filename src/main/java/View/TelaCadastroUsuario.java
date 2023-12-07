@@ -27,7 +27,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         TxfUserID.setEnabled(false);
         DefaultTableModel tblModelUsers = (DefaultTableModel) jTUsers.getModel();
         for (User user : userController.all()) {
-            String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getPhone()), String.valueOf(user.getCpf()), String.valueOf(user.getUsername()), String.valueOf(user.getIs_admin())};
+            String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getUsername()), String.valueOf(user.getCpf()), String.valueOf(user.getPhone()), String.valueOf(user.getIs_admin())};
             tblModelUsers.addRow(rowData);
         }
 
