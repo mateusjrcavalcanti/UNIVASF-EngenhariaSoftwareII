@@ -30,8 +30,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
 
         initComponents();
 
-      
-
         tblModel = (DefaultTableModel) jTHouses.getModel();
         for (House house : houseController.all()) {
             String[] rowData = {String.valueOf(house.getId()), house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
@@ -375,7 +373,7 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         TxfStreetHouse.setText(tblModelUsers.getValueAt(selectedRow, 1).toString());
         TxfNumberHouse.setText(tblModelUsers.getValueAt(selectedRow, 2).toString());
         TxfSizeHouse.setText(tblModelUsers.getValueAt(selectedRow, 3).toString());
-        
+         buttonRegProp.setEnabled(true);
         if(house_id.getText() != ""){
             int x;
         }
@@ -409,6 +407,7 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         TxfStreetHouse.setText("");
         TxfSizeHouse.setText("");
         house_id.setText("");
+         buttonRegProp.setEnabled(false);
     }
 
     void refreshTable() {

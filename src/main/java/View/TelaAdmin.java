@@ -100,7 +100,12 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel3.add(jButton_Cadastro_Residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 210, -1));
 
         jButton_Relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/relatorio-de-lucro.png"))); // NOI18N
-        jButton_Relatorio.setText("Relatório Mensal");
+        jButton_Relatorio.setText("Relatório");
+        jButton_Relatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RelatorioActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 210, -1));
 
         jButton_Reservar_Area.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reserva.png"))); // NOI18N
@@ -325,8 +330,17 @@ public class TelaAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxfMensagemUserActionPerformed
 
+    private void jButton_RelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RelatorioActionPerformed
+       
+        TelaRelatorio tela = new TelaRelatorio();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+        
+        
+    }//GEN-LAST:event_jButton_RelatorioActionPerformed
+
     void enviartexto() {
-        TextAreaUsers.append("\n[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]  {username}  " + TxfMensagemUser.getText()); // FALTA IMPLEMENTAR O BD
+        TextAreaUsers.append("\n[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]  Admin  " + TxfMensagemUser.getText()); // FALTA IMPLEMENTAR O BD
     }
 
     /**

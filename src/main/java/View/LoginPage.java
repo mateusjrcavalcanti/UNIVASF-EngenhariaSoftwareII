@@ -5,6 +5,8 @@ import Model.User;
 import javax.swing.JOptionPane;
 
 public class LoginPage extends javax.swing.JFrame {
+    
+    int IDAtual;
 
     public LoginPage() {
         initComponents();
@@ -174,12 +176,13 @@ public class LoginPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
         } else {
             if (user.getIs_admin()) {
-                TelaAdmin tela = new TelaAdmin();
+                TelaLoading tela = new TelaLoading();
                 tela.setVisible(true);
                 dispose();
             } else if (!user.getIs_admin()) {
                 TelaMorador tela = new TelaMorador();
-                tela.setVisible(true);
+                tela.setVisible(true);                
+                IDAtual = Integer.parseInt(login_User.getText());
                 dispose();
 
             } else {
