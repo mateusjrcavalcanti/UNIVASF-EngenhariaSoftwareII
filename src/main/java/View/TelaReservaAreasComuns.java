@@ -4,29 +4,39 @@
  */
 package View;
 
+import Controller.CommonAreaController;
 import Controller.ReservationController;
+import Model.CommonArea;
 import Model.Reservation;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class TelaReservaAreasComuns extends javax.swing.JFrame {
    
+    DefaultTableModel tblModel;
+    
+    CommonAreaController commonAreaController = new CommonAreaController();
+    ReservationController reservationController = new ReservationController();
+    
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
     
     public TelaReservaAreasComuns() {
         
-        ReservationController reservationController = new ReservationController();
+        initComponents();    
         
-        initComponents();     
-        /*
-         for (Reservation user : reservationController.all()) {           
-            jComboBox_proprietario.addItem(user.getName() + " | " + user.getId());
+         for (CommonArea areas : commonAreaController.all()) {           
+            jComboBox_areas.addItem(String.valueOf(areas.getName()));
         }
-        
-        tblModel = (DefaultTableModel)jTable1.getModel();
-        for (House house : houseController.all()) {  
-            String[] rowData = {String.valueOf(house.getId()), "dono", house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
+
+        tblModel = (DefaultTableModel)jTAreasReservadas.getModel();
+        for (Reservation area : reservationController.all()) {  
+            String[] rowData = {"dono", String.valueOf(area.getUser()), String.valueOf(area.getArea()), String.valueOf(area.getDate())};
             tblModel.addRow(rowData);
-        }
-        */
+        } 
     }
 
    
@@ -42,14 +52,14 @@ public class TelaReservaAreasComuns extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         NomeReserva = new javax.swing.JLabel();
         jTmoradorNome = new javax.swing.JTextField();
-        listAreasReserva = new javax.swing.JComboBox<>();
+        jComboBox_areas = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        dateReserva = new javax.swing.JTextField();
+        jtTdateReserva = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btn_excluir = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
         btn_salvarqaa = new javax.swing.JButton();
-        idreserva = new javax.swing.JTextField();
+        jTidReserva = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -126,25 +136,25 @@ public class TelaReservaAreasComuns extends javax.swing.JFrame {
         });
         jPanel3.add(jTmoradorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 270, 30));
 
-        listAreasReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Área", "Piscina", "Quadra de Futebol", "Quadra de Volei", "Churrasqueira", "Salão de Festas", "Salão de Jogos", "Parquinho", " " }));
-        listAreasReserva.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_areas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Área", " " }));
+        jComboBox_areas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listAreasReservaActionPerformed(evt);
+                jComboBox_areasActionPerformed(evt);
             }
         });
-        jPanel3.add(listAreasReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 270, 30));
+        jPanel3.add(jComboBox_areas, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 270, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel7.setText("Data");
+        jLabel7.setText("Data:");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, -1, 30));
 
-        dateReserva.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        dateReserva.addActionListener(new java.awt.event.ActionListener() {
+        jtTdateReserva.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jtTdateReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateReservaActionPerformed(evt);
+                jtTdateReservaActionPerformed(evt);
             }
         });
-        jPanel3.add(dateReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 130, 30));
+        jPanel3.add(jtTdateReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 130, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Insira as informações para reservar alguma área");
@@ -178,13 +188,14 @@ public class TelaReservaAreasComuns extends javax.swing.JFrame {
         });
         jPanel3.add(btn_salvarqaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 250, 40, 40));
 
-        idreserva.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        idreserva.addActionListener(new java.awt.event.ActionListener() {
+        jTidReserva.setEditable(false);
+        jTidReserva.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTidReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idreservaActionPerformed(evt);
+                jTidReservaActionPerformed(evt);
             }
         });
-        jPanel3.add(idreserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 260, 30));
+        jPanel3.add(jTidReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 260, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel10.setText("ID da área:");
@@ -296,21 +307,34 @@ public class TelaReservaAreasComuns extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTmoradorNomeActionPerformed
 
-    private void dateReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateReservaActionPerformed
+    private void jtTdateReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTdateReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dateReservaActionPerformed
+    }//GEN-LAST:event_jtTdateReservaActionPerformed
 
-    private void idreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idreservaActionPerformed
+    private void jTidReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTidReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idreservaActionPerformed
+    }//GEN-LAST:event_jTidReservaActionPerformed
 
-    private void listAreasReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listAreasReservaActionPerformed
+    private void jComboBox_areasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_areasActionPerformed
         //ADD MÉTODO DE PEGAR NOMES E COLOCAR NA LISTA
           
-    }//GEN-LAST:event_listAreasReservaActionPerformed
+    }//GEN-LAST:event_jComboBox_areasActionPerformed
 
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
-
+        /*
+        String nomeMorador = jTmoradorNome.getText();
+        String nomeArea = jComboBox_areas.getToolTipText();
+        String idReserva = jTidReserva.getText();
+        Date dataReserva = formatter.parse(jtTdateReserva.getText());
+        
+        if(nomeMorador.isEmpty() ||  nomeArea.isEmpty() || idReserva.isEmpty() || dataReserva.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }  else {
+            reservationController.insert(dataReserva, user, area);
+            refreshTable();
+        }
+        */
+        
         
 
     }//GEN-LAST:event_btn_adicionarActionPerformed
@@ -339,6 +363,16 @@ public class TelaReservaAreasComuns extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btn_salvarActionPerformed
 
+    void refreshTable() {
+       /*
+         DefaultTableModel tblModelUsers = (DefaultTableModel) jTAreasReservadas.getModel();
+        tblModelUsers.setRowCount(0);
+        for (Reservation reserva : reservationController.all()) {
+            String[] rowData = {"morador", reserva.getName(), String.valueOf(user.getId())};
+            tblModelUsers.addRow(rowData);
+        }
+        */
+    }
   
     /**
      * @param args the command line arguments
@@ -354,8 +388,7 @@ public class TelaReservaAreasComuns extends javax.swing.JFrame {
     private javax.swing.JButton btn_refreshTable;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_salvarqaa;
-    private javax.swing.JTextField dateReserva;
-    private javax.swing.JTextField idreserva;
+    private javax.swing.JComboBox<String> jComboBox_areas;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -372,8 +405,9 @@ public class TelaReservaAreasComuns extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTAreasReservadas;
+    private javax.swing.JTextField jTidReserva;
     private javax.swing.JTextField jTmoradorNome;
-    private javax.swing.JComboBox<String> listAreasReserva;
+    private javax.swing.JTextField jtTdateReserva;
     private javax.swing.JTextField pesquisaCampo;
     // End of variables declaration//GEN-END:variables
 }
