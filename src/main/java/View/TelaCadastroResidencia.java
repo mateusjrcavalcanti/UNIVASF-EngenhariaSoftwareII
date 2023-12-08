@@ -33,7 +33,7 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         
         tblModel = (DefaultTableModel)jTable1.getModel();
         for (House house : houseController.all()) {  
-            String[] rowData = {String.valueOf(house.getId()), "dono", house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
+            String[] rowData = { house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
             tblModel.addRow(rowData);
         }
         
@@ -201,14 +201,14 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#ID", "Proprietário", "Endereço", "Número", "Tamanho"
+                "#ID", "Endereço", "Número", "Tamanho"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -240,7 +240,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 30));
 
         user_id.setEditable(false);
-        user_id.setText("jTextField1");
         user_id.setEnabled(false);
         user_id.setFocusable(false);
         user_id.addActionListener(new java.awt.event.ActionListener() {
