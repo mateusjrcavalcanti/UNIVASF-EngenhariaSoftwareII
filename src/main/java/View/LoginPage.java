@@ -170,12 +170,16 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton_LogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogarActionPerformed
         // TBotão ao clicar faz a verificação e entra no sistema
+  
+
+        // TBotão ao clicar faz a verificação e entra no sistema
         AuthController controller = new AuthController();
         User user = controller.auth(login_User.getText(), password_user.getText());
-        
+
         if(user == null){
             JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
         }else{
+
         
         }
         
@@ -196,6 +200,20 @@ public class LoginPage extends javax.swing.JFrame {
         
         }else{           
             JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
+
+            if(user.getIs_admin()){
+                TelaAdmin tela = new TelaAdmin();
+                tela.setVisible(true);
+                dispose();
+            } else if(!user.getIs_admin()){
+                TelaMorador tela = new TelaMorador();
+                tela.setVisible(true);
+                dispose();
+
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
+            }
+
         }
     }//GEN-LAST:event_jButton_LogarActionPerformed
 
