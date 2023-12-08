@@ -8,6 +8,7 @@ import Controller.HouseController;
 import Controller.UserController;
 import Model.House;
 import Model.User;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,28 +16,28 @@ import javax.swing.table.DefaultTableModel;
  * @author tapet
  */
 public class TelaCadastroResidencia extends javax.swing.JFrame {
-    
+
+    HouseController houseController = new HouseController();
+    UserController userController = new UserController();
     DefaultTableModel tblModel;
+   
+    
 
     /**
      * Creates new form TelaUsuário
      */
     public TelaCadastroResidencia() {
-        UserController userController = new UserController();        
-        HouseController houseController = new HouseController();        
-        
+
         initComponents();
-        
-        for (User user : userController.all()) {           
-            jComboBox_proprietario.addItem(user.getName() + " | " + user.getId());
-        }
-        
-        tblModel = (DefaultTableModel)jTable1.getModel();
-        for (House house : houseController.all()) {  
-            String[] rowData = { house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
+
+      
+
+        tblModel = (DefaultTableModel) jTHouses.getModel();
+        for (House house : houseController.all()) {
+            String[] rowData = {String.valueOf(house.getId()), house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
             tblModel.addRow(rowData);
         }
-        
+        buttonRegProp.setEnabled(false);
     }
 
     /**
@@ -55,20 +56,21 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TextField_numero = new javax.swing.JTextField();
+        TxfNumberHouse = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        TextField_endereco = new javax.swing.JTextField();
-        jComboBox_proprietario = new javax.swing.JComboBox<>();
+        TxfStreetHouse = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        btn_excluir = new javax.swing.JButton();
+        buttonRegProp = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
         btn_salvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTHouses = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        TextField_tamanho = new javax.swing.JTextField();
+        TxfSizeHouse = new javax.swing.JTextField();
+        house_id = new javax.swing.JTextField();
+        btn_excluir = new javax.swing.JButton();
+        btn_refreshTable = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        user_id = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -125,60 +127,41 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel1.setText("Número da Unidade");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 30));
+        jLabel1.setText("ID Residência:");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
 
-        TextField_numero.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_numero.addActionListener(new java.awt.event.ActionListener() {
+        TxfNumberHouse.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfNumberHouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_numeroActionPerformed(evt);
+                TxfNumberHouseActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_numero, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 70, 30));
+        jPanel3.add(TxfNumberHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel3.setText("Rua da unidade");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, 30));
 
-        TextField_endereco.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_endereco.addActionListener(new java.awt.event.ActionListener() {
+        TxfStreetHouse.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfStreetHouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_enderecoActionPerformed(evt);
+                TxfStreetHouseActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_endereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 310, 30));
-
-        jComboBox_proprietario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        jComboBox_proprietario.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox_proprietarioItemStateChanged(evt);
-            }
-        });
-        jComboBox_proprietario.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jComboBox_proprietarioComponentShown(evt);
-            }
-        });
-        jComboBox_proprietario.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jComboBox_proprietarioInputMethodTextChanged(evt);
-            }
-        });
-        jComboBox_proprietario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_proprietarioActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jComboBox_proprietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 270, 30));
+        jPanel3.add(TxfStreetHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 310, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Inclua as informações relativas à nova residência");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
-        btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
-        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 50, 50));
+        buttonRegProp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userpropietario.png"))); // NOI18N
+        buttonRegProp.setText("Registrar Proprietário");
+        buttonRegProp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRegPropActionPerformed(evt);
+            }
+        });
+        jPanel3.add(buttonRegProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 270, 210, 50));
 
         btn_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar_1.png"))); // NOI18N
         btn_adicionar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -194,9 +177,14 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jPanel3.add(btn_adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 50, 50));
 
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salvar.png"))); // NOI18N
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
         jPanel3.add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 50, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTHouses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -219,7 +207,12 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jTHouses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTHousesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTHouses);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1000, 190));
 
@@ -227,27 +220,47 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         jLabel6.setText("Tamanho da Unidade (m²)");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, -1, 30));
 
-        TextField_tamanho.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_tamanho.addActionListener(new java.awt.event.ActionListener() {
+        TxfSizeHouse.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfSizeHouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_tamanhoActionPerformed(evt);
+                TxfSizeHouseActionPerformed(evt);
             }
         });
-        jPanel3.add(TextField_tamanho, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 50, 30));
+        jPanel3.add(TxfSizeHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 50, 30));
+
+        house_id.setEditable(false);
+        house_id.setEnabled(false);
+        house_id.setFocusable(false);
+        house_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                house_idActionPerformed(evt);
+            }
+        });
+        jPanel3.add(house_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 70, 30));
+
+        btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 50, 50));
+
+        btn_refreshTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
+        btn_refreshTable.setIconTextGap(3);
+        btn_refreshTable.setMaximumSize(new java.awt.Dimension(25, 30));
+        btn_refreshTable.setMinimumSize(new java.awt.Dimension(25, 30));
+        btn_refreshTable.setPreferredSize(new java.awt.Dimension(25, 30));
+        btn_refreshTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshTableActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_refreshTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, 40, 50));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel7.setText("Proprietário");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 30));
-
-        user_id.setEditable(false);
-        user_id.setEnabled(false);
-        user_id.setFocusable(false);
-        user_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user_idActionPerformed(evt);
-            }
-        });
-        jPanel3.add(user_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 90, 30));
+        jLabel7.setText("Número da Unidade");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 30));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -290,57 +303,124 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextField_numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_numeroActionPerformed
+    private void TxfNumberHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfNumberHouseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_numeroActionPerformed
+    }//GEN-LAST:event_TxfNumberHouseActionPerformed
 
-    private void TextField_enderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_enderecoActionPerformed
+    private void TxfStreetHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfStreetHouseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_enderecoActionPerformed
+    }//GEN-LAST:event_TxfStreetHouseActionPerformed
 
-    private void TextField_tamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_tamanhoActionPerformed
+    private void TxfSizeHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfSizeHouseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_tamanhoActionPerformed
-
-    private void jComboBox_proprietarioComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioComponentShown
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_proprietarioComponentShown
+    }//GEN-LAST:event_TxfSizeHouseActionPerformed
 
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
-        // TODO add your handling code here:
+
+        String numberHouse = TxfNumberHouse.getText();
+        String streetHouse = TxfStreetHouse.getText();
+        String sizeHouse = TxfSizeHouse.getText();
+        HouseController house = new HouseController();
+        house.insert(streetHouse, Integer.parseInt(sizeHouse), Integer.parseInt(numberHouse));
+        refreshTable();
+
     }//GEN-LAST:event_btn_adicionarActionPerformed
 
     private void btn_adicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adicionarMouseClicked
-        String[] rowData = null;
-        tblModel.addRow(rowData);
+
     }//GEN-LAST:event_btn_adicionarMouseClicked
 
-    private void jComboBox_proprietarioInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioInputMethodTextChanged
-
-    }//GEN-LAST:event_jComboBox_proprietarioInputMethodTextChanged
-
-    private void jComboBox_proprietarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioItemStateChanged
-        Object selectedItem = jComboBox_proprietario.getSelectedItem();
-        if (selectedItem != null) {
-            String selectedString = selectedItem.toString();
-
-            // Dividir a string para obter o ID
-            String[] parts = selectedString.split(" \\| ");
-
-            if (parts.length >= 2) {
-                // A segunda parte (índice 1) contém o ID
-                user_id.setText(parts[1]);
-            } 
-        } 
-    }//GEN-LAST:event_jComboBox_proprietarioItemStateChanged
-
-    private void jComboBox_proprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_proprietarioActionPerformed
+    private void house_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_house_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_proprietarioActionPerformed
+    }//GEN-LAST:event_house_idActionPerformed
 
-    private void user_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_user_idActionPerformed
+    private void buttonRegPropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegPropActionPerformed
+
+
+    }//GEN-LAST:event_buttonRegPropActionPerformed
+
+    private void btn_refreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshTableActionPerformed
+        limparCampos();
+        refreshTable();
+    }//GEN-LAST:event_btn_refreshTableActionPerformed
+
+   
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+            try {
+            int idSelected = Integer.parseInt(house_id.getText());
+
+           
+            houseController.delete(idSelected);
+            refreshTable();
+            limparCampos();
+        } catch (NumberFormatException e) {
+            // Se o texto não puder ser convertido para um número inteiro
+            JOptionPane.showMessageDialog(this, "Por favor, insira um ID válido.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            // Captura de exceções genéricas
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro durante a exclusão do usuário.", "Erro", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
+        
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void jTHousesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTHousesMouseClicked
+       
+        
+        int selectedRow = jTHouses.getSelectedRow();
+        DefaultTableModel tblModelUsers = (DefaultTableModel) jTHouses.getModel();
+        
+         house_id.setText(tblModelUsers.getValueAt(selectedRow, 0).toString());
+        TxfStreetHouse.setText(tblModelUsers.getValueAt(selectedRow, 1).toString());
+        TxfNumberHouse.setText(tblModelUsers.getValueAt(selectedRow, 2).toString());
+        TxfSizeHouse.setText(tblModelUsers.getValueAt(selectedRow, 3).toString());
+        
+        if(house_id.getText() != ""){
+            int x;
+        }
+      
+    }//GEN-LAST:event_jTHousesMouseClicked
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+       try {
+           
+        String numberHouse = TxfNumberHouse.getText();
+        String streetHouse = TxfStreetHouse.getText();
+        String sizeHouse = TxfSizeHouse.getText(); 
+        String IdHouse = house_id.getText();
+        
+        HouseController house = new HouseController();
+
+           house.update(Integer.parseInt(IdHouse), streetHouse ,  Integer.parseInt(sizeHouse), Integer.parseInt(numberHouse));
+           refreshTable();
+            //  JOptionPane.showMessageDialog(this, "Usuário atualizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            refreshTable();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira um ID válido.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro durante a atualização do usuário.", "Erro", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    void limparCampos() {
+        TxfNumberHouse.setText("");
+        TxfStreetHouse.setText("");
+        TxfSizeHouse.setText("");
+        house_id.setText("");
+    }
+
+    void refreshTable() {
+        
+        tblModel = (DefaultTableModel) jTHouses.getModel();
+         tblModel.setRowCount(0);
+        
+        for (House house : houseController.all()) {
+            String[] rowData = {String.valueOf(house.getId()), house.getAdress(), String.valueOf(house.getNumber()), String.valueOf(house.getSize())};
+            tblModel.addRow(rowData);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -379,13 +459,15 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextField_endereco;
-    private javax.swing.JTextField TextField_numero;
-    private javax.swing.JTextField TextField_tamanho;
+    private javax.swing.JTextField TxfNumberHouse;
+    private javax.swing.JTextField TxfSizeHouse;
+    private javax.swing.JTextField TxfStreetHouse;
     private javax.swing.JButton btn_adicionar;
     private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_refreshTable;
     private javax.swing.JButton btn_salvar;
-    private javax.swing.JComboBox<String> jComboBox_proprietario;
+    private javax.swing.JButton buttonRegProp;
+    private javax.swing.JTextField house_id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -401,7 +483,6 @@ public class TelaCadastroResidencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField user_id;
+    private javax.swing.JTable jTHouses;
     // End of variables declaration//GEN-END:variables
 }
