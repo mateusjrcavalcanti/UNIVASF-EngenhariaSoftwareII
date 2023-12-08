@@ -358,7 +358,7 @@ public class TelaCadastroAreasComuns extends javax.swing.JFrame {
         DefaultTableModel tblModelUsers = (DefaultTableModel) jTAreas.getModel();
         tblModelUsers.setRowCount(0);
         for (CommonArea user : commonAreaController.all()) {
-            String[] rowData = {String.valueOf(user.getId()), user.getName(), String.valueOf(user.getId())};
+            String[] rowData = {user.getName(), String.valueOf(user.getId())};
             tblModelUsers.addRow(rowData);
         }
     }
