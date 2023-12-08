@@ -4,6 +4,10 @@
  */
 package View;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author toim6
@@ -34,7 +38,10 @@ public class TelaMorador extends javax.swing.JFrame {
         jButton_Reservar_Area = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        TextField_name_user = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        TextField_Morador = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextAreaUsers = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -92,27 +99,55 @@ public class TelaMorador extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
+        jButton1.setText("enviar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        TextField_Morador.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TextField_Morador.setToolTipText("Digite aqui sua mensagem  (CHAT CONDOMINIO)");
+        TextField_Morador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField_MoradorActionPerformed(evt);
+            }
+        });
+
+        TextAreaUsers.setEditable(false);
+        TextAreaUsers.setColumns(20);
+        TextAreaUsers.setLineWrap(true);
+        TextAreaUsers.setRows(5);
+        jScrollPane1.setViewportView(TextAreaUsers);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(TextField_Morador, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextField_Morador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap())
         );
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 390, 200));
-
-        TextField_name_user.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TextField_name_user.setToolTipText("Digite aqui sua mensagem  (CHAT CONDOMINIO)");
-        TextField_name_user.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_name_userActionPerformed(evt);
-            }
-        });
-        jPanel3.add(TextField_name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 390, 30));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, 240));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel7.setText("Solicitações:");
@@ -234,17 +269,36 @@ public class TelaMorador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Taxa_InfosActionPerformed
 
     private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
-        // TODO add your handling code here:
+        TelaReservaAreasComuns reservaTela = new TelaReservaAreasComuns();
+        reservaTela.setVisible(true);
+        reservaTela.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
 
-    private void TextField_name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_name_userActionPerformed
+    private void TextField_MoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_MoradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_name_userActionPerformed
+    }//GEN-LAST:event_TextField_MoradorActionPerformed
 
     private void jButton_RelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RelatorioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_RelatorioActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        // NÃO LIGADO AO BANCO
+        if (TextField_Morador.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira alguma mensagem.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            enviartexto();
+            TextField_Morador.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    void enviartexto() {
+        //pegar USERNAME do banco de dados
+        TextAreaUsers.append("\n[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]  {username}  " + TextField_Morador.getText()); // FALTA IMPLEMENTAR O BD
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -267,7 +321,9 @@ public class TelaMorador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextField_name_user;
+    private javax.swing.JTextArea TextAreaUsers;
+    private javax.swing.JTextField TextField_Morador;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Relatorio;
     private javax.swing.JButton jButton_Reservar_Area;
     private javax.swing.JButton jButton_Taxa_Infos;
@@ -288,6 +344,7 @@ public class TelaMorador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

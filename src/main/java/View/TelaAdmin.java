@@ -100,7 +100,12 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel3.add(jButton_Cadastro_Residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 210, -1));
 
         jButton_Relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/relatorio-de-lucro.png"))); // NOI18N
-        jButton_Relatorio.setText("Relatório Mensal");
+        jButton_Relatorio.setText("Relatório");
+        jButton_Relatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RelatorioActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton_Relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 210, -1));
 
         jButton_Reservar_Area.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reserva.png"))); // NOI18N
@@ -141,6 +146,7 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
 
+        TextAreaUsers.setEditable(false);
         TextAreaUsers.setColumns(20);
         TextAreaUsers.setLineWrap(true);
         TextAreaUsers.setRows(5);
@@ -158,7 +164,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                         .addComponent(TxfMensagemUser, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +226,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 129, Short.MAX_VALUE)
+            .addGap(0, 156, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -286,9 +292,10 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Cadastro_VeiculoActionPerformed
 
     private void jButton_Reservar_AreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Reservar_AreaActionPerformed
-         HouseController casa = new HouseController();
-         
-         casa.insert("54", 30, 30);
+      
+        TelaCadastroAreasComuns cadastroTela = new TelaCadastroAreasComuns();
+        cadastroTela.setVisible(true);
+        cadastroTela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton_Reservar_AreaActionPerformed
 
     private void jButton_Cadastro_ResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_ResidenciaActionPerformed
@@ -317,15 +324,23 @@ public class TelaAdmin extends javax.swing.JFrame {
             enviartexto();
             TxfMensagemUser.setText("");
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TxfMensagemUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfMensagemUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxfMensagemUserActionPerformed
 
+    private void jButton_RelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RelatorioActionPerformed
+       
+        TelaRelatorio tela = new TelaRelatorio();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+        
+        
+    }//GEN-LAST:event_jButton_RelatorioActionPerformed
+
     void enviartexto() {
-        TextAreaUsers.append("\n[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]  {username}  " + TxfMensagemUser.getText()); // FALTA IMPLEMENTAR O BD
+        TextAreaUsers.append("\n[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]  Admin  " + TxfMensagemUser.getText()); // FALTA IMPLEMENTAR O BD
     }
 
     /**

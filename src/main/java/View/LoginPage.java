@@ -4,8 +4,9 @@ import Controller.AuthController;
 import Model.User;
 import javax.swing.JOptionPane;
 
-
 public class LoginPage extends javax.swing.JFrame {
+    
+    int IDAtual;
 
     public LoginPage() {
         initComponents();
@@ -157,21 +158,21 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void login_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_UserActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_login_UserActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jButton_LogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogarActionPerformed
-        // TBotão ao clicar faz a verificação e entra no sistema
         AuthController controller = new AuthController();
         User user = controller.auth(login_User.getText(), password_user.getText());
+
 
         if(user == null){
             JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
@@ -191,6 +192,7 @@ public class LoginPage extends javax.swing.JFrame {
                 dispose();
 
             }else{
+
                 JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
             }
         }

@@ -39,6 +39,8 @@ public class Car implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+    
+  
 
     public String getPlate() {
         return plate;
