@@ -58,7 +58,7 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TxfUserName = new javax.swing.JTextField();
+        TxfPlateName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btn_excluir = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
@@ -70,7 +70,7 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
         btn_refreshTable = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTCars = new javax.swing.JTable();
-        TxfGetIDPlaca = new javax.swing.JTextField();
+        TxfIDDono = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -130,13 +130,13 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
         jLabel1.setText("Placa do veículo:");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 120, 30));
 
-        TxfUserName.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TxfUserName.addActionListener(new java.awt.event.ActionListener() {
+        TxfPlateName.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TxfPlateName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxfUserNameActionPerformed(evt);
+                TxfPlateNameActionPerformed(evt);
             }
         });
-        jPanel3.add(TxfUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 250, 30));
+        jPanel3.add(TxfPlateName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 250, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Insira as informações referentes ao novo Veículo");
@@ -232,12 +232,12 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 300, 1000, 230));
 
-        TxfGetIDPlaca.addActionListener(new java.awt.event.ActionListener() {
+        TxfIDDono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxfGetIDPlacaActionPerformed(evt);
+                TxfIDDonoActionPerformed(evt);
             }
         });
-        jPanel3.add(TxfGetIDPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 150, 30));
+        jPanel3.add(TxfIDDono, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 150, 30));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -280,13 +280,16 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserNameActionPerformed
+    private void TxfPlateNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfPlateNameActionPerformed
    
-    }//GEN-LAST:event_TxfUserNameActionPerformed
+    }//GEN-LAST:event_TxfPlateNameActionPerformed
 
   
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
-     
+       
+        
+        
+       // carController.insert(TxfPlateName.getText(),  );
     }//GEN-LAST:event_btn_adicionarActionPerformed
 
     private void TxfUserSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfUserSearchActionPerformed
@@ -310,9 +313,9 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btn_salvarActionPerformed
 
-    private void TxfGetIDPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfGetIDPlacaActionPerformed
+    private void TxfIDDonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfIDDonoActionPerformed
      // TxfGetIDPlaca
-    }//GEN-LAST:event_TxfGetIDPlacaActionPerformed
+    }//GEN-LAST:event_TxfIDDonoActionPerformed
 
    
     /**
@@ -354,8 +357,8 @@ public class TelaCadastroCarros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxfGetIDPlaca;
-    private javax.swing.JTextField TxfUserName;
+    private javax.swing.JTextField TxfIDDono;
+    private javax.swing.JTextField TxfPlateName;
     private javax.swing.JTextField TxfUserSearch;
     private javax.swing.JButton btn_adicionar;
     private javax.swing.JButton btn_excluir;
