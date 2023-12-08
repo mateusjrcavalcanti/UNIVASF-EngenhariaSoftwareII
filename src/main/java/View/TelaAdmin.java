@@ -319,7 +319,6 @@ public class TelaAdmin extends javax.swing.JFrame {
             enviartexto();
             TxfMensagemUser.setText("");
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TxfMensagemUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxfMensagemUserActionPerformed
