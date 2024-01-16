@@ -172,31 +172,23 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButton_LogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogarActionPerformed
         AuthController controller = new AuthController();
         User user = controller.auth(login_User.getText(), password_user.getText());
-
-
-        if(user == null){
+        if (user == null) {
             JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
-        }else{
-            if(login_User.getText().equals("dono"))
-            {
+        } else {
+            if (user.getIs_admin()) {
                 TelaLoading tela = new TelaLoading();
                 tela.setVisible(true);
                 dispose();
-            } else if(user.getIs_admin()){
-                TelaAdmin tela = new TelaAdmin();
-                tela.setVisible(true);
-                dispose();
-            } else if(user.getIs_resident()){
+            } else if (!user.getIs_admin()) {
                 TelaMorador tela = new TelaMorador();
-                tela.setVisible(true);
+                tela.setVisible(true);                
+                IDAtual = Integer.parseInt(login_User.getText());
                 dispose();
 
-            }else{
-
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Usuário ou senha Incorreto!!!");
             }
         }
-
     }//GEN-LAST:event_jButton_LogarActionPerformed
 
     /**
@@ -206,7 +198,7 @@ public class LoginPage extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
